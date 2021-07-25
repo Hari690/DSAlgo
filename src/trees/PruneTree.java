@@ -2,47 +2,19 @@ package trees;
 
 public class PruneTree {
     public TreeNode pruneTree(TreeNode root) {
-        boolean val = helper(root);
-        if( val==true) {
+        if(root==null)
             return null;
-        } else {
+
+        root.left = pruneTree(root.left);
+        root.right = pruneTree(root.right);
+
+        if(root.left!=null || root.right!=null)
             return root;
-        }
-    }
 
-    private boolean helper(TreeNode root) {
-        if( root==null ) {
-            return true;
-        }
-
-        boolean leftHasZero = helper(root.left);
-        boolean rightHasZero = helper(root.right);
-
-        if( root.val==0) {
-            if(leftHasZero && rightHasZero)
-                return true;
-            else {
-                if (leftHasZero) {
-                    root.left = null;
-                } else if (rightHasZero) {
-                    root.right = null;
-                }
-                return false;
-            }
-        } else {
-            // case for 1
-            if(leftHasZero && rightHasZero) {
-                root.left = null;
-                root.right = null;
-            } else {
-                if (leftHasZero) {
-                    root.left = null;
-                } else if (rightHasZero) {
-                    root.right = null;
-                }
-            }
-            return false;
-        }
+        if(root.val==0)
+            return null;
+        else
+            return root;
     }
 
     public static void main(String[] args) {
