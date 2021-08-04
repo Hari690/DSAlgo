@@ -16,23 +16,24 @@ public class DetectCycle {
         ListNode slow = head;
         ListNode fast = head;
 
-        while(fast!=null && fast.next!=null) {
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
 
-            if(slow==fast)
+            if (slow == fast)
                 break;
         }
 
-        if(fast==null || fast.next==null)
+        if (fast == null || fast.next == null)
             return null;
 
         slow = head;
 
-        while(slow!=fast) {
+        while (slow != fast) {
             slow = slow.next;
             fast = fast.next;
         }
 
         return slow;
+    }
 }

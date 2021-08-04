@@ -8,7 +8,7 @@ package trees;
  *
  * Design an algorithm that runs in less than O(n) time complexity.
  */
-public class NumberCompleteBinaryTrees {
+public class CountCompleteTreeNodes {
 
     // Check level , if both left and right level are same return 2^level-1.
     // Else recur down until this is true and keep counting.
