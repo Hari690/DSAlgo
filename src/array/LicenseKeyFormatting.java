@@ -19,7 +19,7 @@ public class LicenseKeyFormatting {
             if( s.charAt(i)!='-') {
                 if ( j==k) {
                     output.append("-");
-                    j =0;
+                    j=0;
                 }
                 output.append(Character.toUpperCase(s.charAt(i)));
                 j++;

@@ -1,4 +1,4 @@
-package binarysearch;
+package twopointer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * |a - x| < |b - x|, or
  * |a - x| == |b - x| and a < b
  *
- * This is done using linear search but the correct soultion is Binary search.
+ * This is done using linear search but the correct solution is Binary search.
  */
 public class FindKClosestElements {
     public List<Integer> findClosestElements(int[] arr, int k, int x) {

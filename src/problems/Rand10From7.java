@@ -12,6 +12,7 @@ public class Rand10From7 {
 
     /*
         call fn twice and use it in 2 ways.
+        v1 for range and v2 to identify part of range.
      */
     public int rand10() {
         int v1 = rand7(), v2 = rand7();

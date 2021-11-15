@@ -3,6 +3,7 @@ package problems;
 /*
     You are climbing a staircase. It takes n steps to reach the top.
     Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+    Solution is a fibonacci sequence.
  */
 public class ClimbStairs {
 
@@ -12,16 +13,6 @@ public class ClimbStairs {
     }
 
     public int climbStairs(int n) {
-
-        int[] output = new int[n+1];
-
-        climbStairs(n, output);
-
-        return output[n];
-
-    }
-
-    public int climbStairs(int n, int[] output) {
 
         // base cases
         if(n <= 0) return 0;

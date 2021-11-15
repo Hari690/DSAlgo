@@ -1,6 +1,18 @@
 package binarysearch;
 
 public class FirstAndLastSortedArray {
+
+    // Driver program
+    public static void main(String[] args) {
+        int arr[] = {1, 2, 2, 2, 2,
+            3, 4, 7, 8, 8};
+        int n = arr.length;
+        int x = 8;
+        System.out.println("First Occurrence = " +
+            first(arr, x, n));
+        System.out.println("Last Occurrence = " +
+            last(arr, x, n));
+    }
     // if x is present in arr[] then
 // returns the index of FIRST
 // occurrence of x in arr[0..n-1],
@@ -55,15 +67,4 @@ public class FirstAndLastSortedArray {
         return res;
     }
 
-    // Driver program
-    public static void main(String[] args) {
-        int arr[] = {1, 2, 2, 2, 2,
-            3, 4, 7, 8, 8};
-        int n = arr.length;
-        int x = 8;
-        System.out.println("First Occurrence = " +
-            first(arr, x, n));
-        System.out.println("Last Occurrence = " +
-            last(arr, x, n));
-    }
 }

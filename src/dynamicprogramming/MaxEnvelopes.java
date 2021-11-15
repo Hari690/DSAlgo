@@ -11,10 +11,12 @@ import java.util.Comparator;
  *
  * Return the maximum number of envelopes you can Russian doll (i.e., put one inside the other).
  *
- * LIS on 2d sorted array.
  */
 public class MaxEnvelopes {
 
+    /*
+        LIS on 2-d sorted array.
+     */
     public int maxEnvelopes(int[][] envelopes) {
         Arrays.sort(envelopes, Comparator.comparingInt((int[] envelope) -> envelope[0]));
         return lengthOfLIS(envelopes);

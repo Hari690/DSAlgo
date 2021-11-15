@@ -31,7 +31,7 @@ public class CommonCharacterStrings {
         }
         for (int i = 0; i < 26; i++) {
             for (int j = 0; j < dict[i]; j++) {
-                ans.add(Character.toString((char) ('a' + i)));
+                ans.add(String.valueOf((char) ('a' + i)));
             }
         }
         return ans;

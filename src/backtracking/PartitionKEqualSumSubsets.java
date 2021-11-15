@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class PartitionKEqualSumSubsets {
     public boolean canPartitionKSubsets(int[] nums, int k) {
-        List<Integer> set = new ArrayList<>();
         if (k > nums.length) return false;
         int sum = 0;
         for (int num : nums) sum += num;

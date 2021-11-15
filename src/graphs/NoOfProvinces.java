@@ -8,6 +8,8 @@ package graphs;
  *
  * You are given an n x n matrix isConnected where isConnected[i][j] = 1 if the ith city and the jth city are directly connected, and
  * isConnected[i][j] = 0 otherwise.
+ *
+ * Return the total number of provinces.
  */
 public class NoOfProvinces {
     public void dfs(int[][] M, int[] visited, int i) {

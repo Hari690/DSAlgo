@@ -1,5 +1,9 @@
 package dynamicprogramming;
 
+/**
+ * Given an array of integers heights representing the histogram's bar height where the width of each bar is 1,
+ * return the area of the largest rectangle in the histogram.
+ */
 class MaxAreaHistogram {
     /*
         dp - keep storing numbers to left with indexes of no less than current.
@@ -11,7 +15,7 @@ class MaxAreaHistogram {
         // since we only use these for calculating the base of histogram we can set base condition appropriately.
         sL[0] = -1; sR[n-1] = n;
 
-        // For every index update index small bar before it.
+        // For every index update index of small bar before it.
         // We jump based on indexes and save on complexity.
         for(int i = 1; i < n; ++i){
             int idx = i-1;
@@ -20,7 +24,7 @@ class MaxAreaHistogram {
             sL[i] = idx;
         }
 
-        // For every index update index small bar before it.
+        // For every index update index small bar after it.
         // We jump based on indexes and save on complexity.
         for(int i = n-2; i >= 0; --i){
             int idx = i+1;
@@ -31,6 +35,7 @@ class MaxAreaHistogram {
         int result = 0;
         for(int i = 0; i < n; ++i)
             result = Math.max(result, heights[i]*(sR[i] - sL[i] - 1));
+
         return result;
     }
 

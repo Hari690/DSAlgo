@@ -1,13 +1,5 @@
 package linkedlist;
 
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode() {}
-    ListNode(int val) { this.val = val; }
-    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-}
-
 /**
  * Given a linked list, swap every two adjacent nodes and return its head.
  * You may not modify the values in the list's nodes. Only nodes itself may be changed.

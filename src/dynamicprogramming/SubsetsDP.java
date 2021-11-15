@@ -12,6 +12,7 @@ public class SubsetsDP {
 
     /*
         Iterate over the numbers and keep adding them to all the existing subarrays.
+        BFS
     */
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();

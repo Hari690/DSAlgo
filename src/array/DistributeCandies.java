@@ -12,7 +12,7 @@ package array;
  *
  * Return an array (of length num_people and sum candies) that represents the final distribution of candies.
  */
-public class DiistributeCandies {
+public class DistributeCandies {
     public int[] distributeCandies(int candies, int num_people) {
         int[] people = new int[num_people];
         for (int give = 0; candies > 0; candies -= give) {

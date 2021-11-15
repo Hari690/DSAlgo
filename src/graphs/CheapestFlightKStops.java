@@ -16,6 +16,7 @@ import java.util.PriorityQueue;
  */
 /*
     DIJKSHTRA using Priority queue.
+    similar to BFS except we are using a PQ after building a Adj List.
  */
 public class CheapestFlightKStops {
 

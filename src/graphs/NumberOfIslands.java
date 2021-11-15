@@ -1,12 +1,12 @@
 package graphs;
 
-public class Islands {
+public class NumberOfIslands {
 
     public static void main(String[] args) {
 
         char[][] grid = new char[0][];
 
-        Islands.numIslands(grid);
+        NumberOfIslands.numIslands(grid);
 
     }
 
