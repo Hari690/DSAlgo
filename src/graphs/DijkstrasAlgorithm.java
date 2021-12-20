@@ -21,8 +21,8 @@ class Graph {
     public Graph(int V) {
         this.V = V;
         dist = new int[V];
-        visited = new HashSet<Integer>();
-        pqueue = new PriorityQueue<Node>(V, new Node());
+        visited = new HashSet<>();
+        pqueue = new PriorityQueue<>(V, new Node());
     }
 
     // Dijkstra's Algorithm implementation

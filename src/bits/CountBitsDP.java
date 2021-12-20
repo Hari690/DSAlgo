@@ -13,21 +13,14 @@ To sum up, when you meet even number the count of '1's is always the same as its
  */
 public class CountBitsDP {
     public int[] countBits(int num) {
-
-        int[] res = new int[num + 1];
-        res[0] = 0;
-
-        for(int i = 1; i <= num; i++){
-            if((i & 1) == 0){
-                // 110 is same as 011 which we can get by right shifting and getting previously calculated.
-                // i.e 6 is same as 3.
-                res[i] = res[i >> 1];
-            }else{
-                // odd numbers just take previous and add one.
-                res[i] = res[i - 1] + 1;
+        int result[] = new int[num + 1];
+        int offset = 1;
+        for (int index = 1; index < num + 1; ++index){
+            if (offset * 2 == index){
+                offset *= 2;
             }
+            result[index] = result[index - offset] + 1;
         }
-
-        return res;
+        return result;
     }
 }

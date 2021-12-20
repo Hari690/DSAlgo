@@ -7,6 +7,9 @@ import java.util.Map;
  * Given an integer n, break it into the sum of k positive integers, where k >= 2, and maximize the product of those integers.
  *
  * Return the maximum product you can get.
+ * Input: n = 2
+ * Output: 1
+ * Explanation: 2 = 1 + 1, 1 × 1 = 1.
  */
 public class IntegerBreak {
     public int integerBreakTopDown(int n) {
@@ -27,14 +30,14 @@ public class IntegerBreak {
 
     private Map<Integer,Integer> map = new HashMap<>();
     public int integerBreakBottomUp(int n) {
-        if(n<=2)
+        if(n==2)
             return 1;
 
         if(map.containsKey(n))
             return map.get(n);
 
         int max=1;
-        for(int i=2;i<n;i++) {
+        for(int i=1;i<n;i++) {
             int first = i;
             int second = n-i;
             int product = first*Math.max(second,integerBreakBottomUp(second));

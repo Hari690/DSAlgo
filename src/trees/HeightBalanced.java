@@ -20,33 +20,30 @@ public class HeightBalanced {
         System.out.println(balanced);
     }
 
-    public boolean isBalanced(TreeNode root) {
-
-       return isBalanced(root, new Height());
-
+    class Output {
+        boolean output = true;
     }
 
-    private boolean isBalanced(TreeNode root, Height height) {
+    public boolean isBalanced(TreeNode root) {
+        Output output = new Output();
+        balanced(root, output);
+        return output.output;
+    }
 
-        if(root==null){
-            height.height = 0;
-            return true;
+
+    private int balanced(TreeNode root, Output output) {
+        if(root==null)
+            return 0;
+
+        if(output.output) {
+            int left = balanced(root.left, output);
+            int right = balanced(root.right, output);
+            int diff = Math.abs(left-right);
+            if(diff>1) {
+                output.output = false;
+            }
+            return Math.max(left,right)+1;
         }
-
-        Height lheight = new Height();
-        Height rheight = new Height();
-        // way of getting back 2 things. is balanced on the left as well as lheight by passing
-        // a mutable object with an integer.
-        boolean lBalanced = isBalanced(root.left, lheight);
-        boolean rBalanced = isBalanced(root.right, rheight);
-        int lh = lheight.height, rh = rheight.height;
-
-        height.height = (lh > rh ? lh : rh) + 1;
-
-        if(Math.abs(lheight.height-rheight.height)>=2) {
-            return false;
-        } else {
-            return lBalanced && rBalanced;
-        }
+        return 0;
     }
 }

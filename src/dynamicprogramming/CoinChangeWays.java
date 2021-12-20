@@ -13,6 +13,7 @@ package dynamicprogramming;
  */
 public class CoinChangeWays {
 
+    // knapsack problem with infinite coins.
     public int change(int amount, int[] coins) {
         Integer[][] dp = new Integer[coins.length][amount + 1];
         return getWays(coins, amount, coins.length-1, dp);

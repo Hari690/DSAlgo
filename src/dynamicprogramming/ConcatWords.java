@@ -1,7 +1,6 @@
 package dynamicprogramming;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -33,15 +32,16 @@ public class ConcatWords {
         if(check.containsKey(word))
             return check.get(word);
 
+        boolean result = false;
         for(int i=1;i<word.length();i++) {
             if(set.contains(word.substring(0,i))) {
                 if(set.contains(word.substring(i)) || check(set, word.substring(i))) {
-                    check.put(word, true);
-                    return true;
+                    result = true;
+                    break;
                 }
             }
         }
-        check.put(word,false);
-        return false;
+        check.put(word,result);
+        return result;
     }
 }

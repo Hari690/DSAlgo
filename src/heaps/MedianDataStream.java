@@ -21,36 +21,29 @@ import java.util.PriorityQueue;
  * obj.addNum(num);
  * double param_2 = obj.findMedian();
  */
-class MedianFinder {
-    PriorityQueue<Integer> min = null;
-    PriorityQueue<Integer> max = null;
-    boolean even = true;
-
-    public MedianFinder() {
+class MedianDataStream {
+    // 2 heap approach to find the median
+    PriorityQueue<Integer> min;
+    PriorityQueue<Integer> max;
+    public MedianDataStream() {
         min = new PriorityQueue();
         max = new PriorityQueue(Collections.reverseOrder());
     }
 
-    // max queue is always larger or equal to min queue
-
     // Adds a number into the data structure.
     public void addNum(int num) {
-        if(even) {
-            max.offer(num);
-            min.offer(max.poll());
-        } else {
-            min.offer(num);
+        max.offer(num);
+        min.offer(max.poll());
+        if(max.size()<min.size())
             max.offer(min.poll());
-        }
-        even = !even;
     }
 
     // Returns the median of current data stream
     public double findMedian() {
-        if(even) {
-            return (double)(max.peek() + min.peek())/2;
+        if(max.size()>min.size()) {
+            return (double)max.peek();
         }else {
-            return (double)min.peek();
+            return (double)(max.peek() + min.peek())/2;
         }
     }
 }

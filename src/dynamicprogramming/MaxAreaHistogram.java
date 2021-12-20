@@ -1,5 +1,9 @@
 package dynamicprogramming;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Stack;
+
 /**
  * Given an array of integers heights representing the histogram's bar height where the width of each bar is 1,
  * return the area of the largest rectangle in the histogram.
@@ -39,10 +43,41 @@ class MaxAreaHistogram {
         return result;
     }
 
+    // stack based solution by inserting indexes.
+    public int largestRectangleAreaStack(int[] heights) {
+        Deque<Integer> stack = new LinkedList<>();
+
+        int maxArea = 0;
+        int n=heights.length;
+        int i=0;
+
+        while(i<n) {
+            // as long as the current bar is shorter than the last one in the stack
+            // we keep popping out the stack and calculate the area based on
+            // the popped bar
+            while(!stack.isEmpty() && heights[i]<heights[stack.peek()]) {
+                // tricky part is how to handle the index of the left bound
+                // finding index for handling this case [5,4,1,2] 4*2 after popping 5 from stack
+                // i.e arr[1]*(1-0+1).
+                maxArea = Math.max(maxArea, heights[stack.pop()] * (i - (stack.isEmpty() ? 0 : stack.peek() + 1)));
+            }
+            // put current bar's index to the stack
+            stack.push(i++);
+        }
+
+        // finally pop out any bar left in the stack and calculate the area based on it so n minus instead of i minus.
+        while(!stack.isEmpty())
+            maxArea = Math.max(maxArea, heights[stack.pop()] * (n - (stack.isEmpty() ? 0 : stack.peek() + 1)));
+
+        return maxArea;
+    }
+
     public static void main(String[] args) {
         int[] heights = {2, 1, 5, 6, 2, 3};
 
         MaxAreaHistogram maxAreaHistogram = new MaxAreaHistogram();
-        maxAreaHistogram.largestRectangleArea(heights);
+        System.out.println(maxAreaHistogram.largestRectangleArea(heights));
+
+        System.out.println(maxAreaHistogram.largestRectangleAreaStack(heights));
     }
 }

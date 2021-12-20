@@ -20,30 +20,37 @@ Return the least number of units of times that the CPU will take to finish all t
  */
 class TaskScheduler {
     public int leastInterval(char[] tasks, int n) {
-        Map<Character, Integer> counts = new HashMap();
-        for (char t : tasks) {
-            counts.put(t, counts.getOrDefault(t, 0) + 1);
-        }
-        PriorityQueue<Integer> pq = new PriorityQueue(counts.size(), Collections.reverseOrder());
-        pq.addAll(counts.values());
+        Map<Character,Integer> map = new HashMap<>();
 
-        int result = 0;
-        while (!pq.isEmpty()) {
-            int time = 0;
-            List<Integer> tmp = new ArrayList();
-            for (int i = 0; i < n + 1; ++i) {
-                if (!pq.isEmpty()) {
-                    tmp.add(pq.remove() - 1);
-                    time++;
-                }
+        for(char task : tasks)
+            map.put(task, map.getOrDefault(task,0)+1);
+
+        PriorityQueue<Map.Entry<Character,Integer>> pq = new PriorityQueue<>((e1, e2)->
+        {
+            if(e1.getValue()==e2.getValue())
+                return e2.getKey()-e1.getKey();
+            else
+                return e2.getValue()-e1.getValue();
+        });
+
+        int count=0;
+        pq.addAll(map.entrySet());
+        while(pq.size()>0) {
+            int i=n+1; // interval size.
+            List<Map.Entry<Character,Integer>> list = new ArrayList();
+            while(pq.size()>0 && i>0) {
+                i--; // reduce size of interval.
+                Map.Entry<Character,Integer> entry = pq.poll();
+                entry.setValue(entry.getValue()-1);
+                if(entry.getValue()>0)
+                    list.add(entry);
+                count++;
             }
-            for (int t : tmp) {
-                if (t > 0) {
-                    pq.add(t);
-                }
+            pq.addAll(list);
+            if(i>0 && pq.size()>0) {
+                count+=i;
             }
-            result += pq.isEmpty() ? time : n + 1;
         }
-        return result;
+        return count;
     }
 }

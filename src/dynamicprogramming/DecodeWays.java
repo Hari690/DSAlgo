@@ -31,7 +31,6 @@ public class DecodeWays {
     }
 
     public int numDecodings(String s) {
-
        int count1 = 1;
        int count2 = 1;
         for(int i=1;i<=s.length();i++) {

@@ -1,7 +1,9 @@
 package graphs;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 /**
@@ -30,21 +32,27 @@ public class CheapestFlightKStops {
             //source city: [destination city, source to destination cost].
             graph.get(flight[0]).add(new int[]{flight[1], flight[2]});
         }
+        //cycle detection.
+        Map<Integer,Integer> visited = new HashMap<>();
         //MinHeap: input format: [city, distance, cost], it compares based on cost.
         PriorityQueue<int[]> minHeap = new PriorityQueue<>((a, b) -> a[2] - b[2]);
         minHeap.add(new int[]{src, 0, 0});
         while (!minHeap.isEmpty()) {
             int[] cur = minHeap.poll();
-            int city = cur[0], distance = cur[1], cost = cur[2];
-            if (city == dst) {
-                return cost;
-            }
-            if (distance <= K) {
-                //add adjacent nodes.
-                for (int[] adjNode : graph.get(city)) {
-                    minHeap.add(new int[]{adjNode[0], distance + 1, cost + adjNode[1]});
+            int city = cur[0];
+            int distance = cur[1], cost = cur[2];
+            if(!visited.containsKey(city) || visited.get(city)>distance) {
+                if (city == dst) {
+                    return cost;
+                }
+                if (distance <= K) {
+                    //add adjacent nodes.
+                    for (int[] adjNode : graph.get(city)) {
+                        minHeap.add(new int[]{adjNode[0], distance + 1, cost + adjNode[1]});
+                    }
                 }
             }
+            visited.put(city, distance);
         }
         return -1;
     }

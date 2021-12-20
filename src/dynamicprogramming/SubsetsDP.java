@@ -27,4 +27,23 @@ public class SubsetsDP {
         }
         return result;
     }
+
+    public List<List<Integer>> subsetsBacktracking(int[] nums) {
+        List<List<Integer>> output = new ArrayList<>();
+        List<Integer> list = new ArrayList();
+        backtrack(nums, 0, list, output);
+        return output;
+    }
+
+    private void backtrack(int[] nums, int index, List<Integer> list, List<List<Integer>> output) {
+        if(index==nums.length) {
+            output.add(new ArrayList<>(list));
+            return;
+        }
+
+        list.add(nums[index]);
+        backtrack(nums, index+1, list, output);
+        list.remove(list.size()-1);
+        backtrack(nums, index+1, list, output);
+    }
 }

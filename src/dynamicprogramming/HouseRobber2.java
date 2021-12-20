@@ -30,7 +30,6 @@ public class HouseRobber2 {
             p1=temp;
 
         }
-        System.out.println(p2);
         return p2;
     }
 }

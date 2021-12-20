@@ -16,6 +16,8 @@ import java.util.Map;
 public class MinDaysToEatOrangesMemoize {
     // idea is to use %2 + 1 for -> getMinSteps(n/2)
     // idea is to use %3 + 1 for -> getMinSteps(n/3)
+    // if we don't greedily solve it and instead use a getMinSteps(n-1)
+    // kind of recursive call it will cause TLE.
     private Map<Integer,Integer> map = new HashMap<>();
     public int minDays(int n) {
         if(n==1)
