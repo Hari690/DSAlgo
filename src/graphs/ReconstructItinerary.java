@@ -18,6 +18,8 @@ import java.util.PriorityQueue;
  */
 public class ReconstructItinerary {
 
+    /* Key is to create a Map with String as key and PriorityQueue as value to do DFS properly.
+     */
     Map<String, PriorityQueue<String>> neighbours = new HashMap<>();
     List<String> output = new LinkedList<>();
 

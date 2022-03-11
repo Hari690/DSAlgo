@@ -13,6 +13,7 @@ public class PartitionKEqualSumSubsets {
         int sum = 0;
         for (int num : nums) sum += num;
         if (sum % k != 0) return false;
+        // dfs with visited set can help to check all elements of array.
         boolean[] visited = new boolean[nums.length];
         return dfs(nums, 0, k, visited, sum/k, 0, 0);
     }

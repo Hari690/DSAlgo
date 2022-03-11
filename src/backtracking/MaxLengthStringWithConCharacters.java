@@ -23,8 +23,9 @@ public class MaxLengthStringWithConCharacters {
 
     public int maxLength(List<String> arr) {
         String word = "";
-        recurse( arr,0, word);
-        return maxSize;
+        return backtrack(arr, 0, word);
+//        recurse( arr,0, word);
+//        return maxSize;
     }
 
     private void recurse(List<String> input, int index, String temp) {
@@ -36,6 +37,22 @@ public class MaxLengthStringWithConCharacters {
                 recurse(input, i+1, temp+input.get(i));
             }
         }
+    }
+
+    /*
+        Using include and exclude technique to explore all subsets.
+     */
+    private int backtrack(List<String> input, int index, String temp) {
+        if(temp.length() > maxSize) {
+            maxSize = temp.length();
+        }
+        if(index==input.size())
+            return temp.length();
+        int maxLength = 0;
+        if(noDuplicates(temp+input.get(index))) {
+            maxLength = Math.max(maxLength, backtrack(input, index+1, temp+input.get(index)));
+        }
+        return Math.max(maxLength, backtrack(input, index+1, temp));
     }
 
     private boolean noDuplicates(String s) {
@@ -51,9 +68,10 @@ public class MaxLengthStringWithConCharacters {
 
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
-        list.add("un");
-        list.add("iq");
-        list.add("ue");
+        list.add("cha");
+        list.add("r");
+        list.add("act");
+        list.add("ers");
 
         MaxLengthStringWithConCharacters main = new MaxLengthStringWithConCharacters();
         System.out.println(main.maxLength(list));

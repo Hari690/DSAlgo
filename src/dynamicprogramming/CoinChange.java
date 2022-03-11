@@ -1,6 +1,8 @@
 package dynamicprogramming;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * You are given coins of different denominations and a total amount of money amount.
@@ -8,12 +10,6 @@ import java.util.Arrays;
  * If that amount of money cannot be made up by any combination of the coins, return -1.
  */
 public class CoinChange {
-
-    public static void main(String[] args) {
-
-        int[] coins = {1,2,5};
-        System.out.println(new CoinChange().coinChange(coins, 11));
-    }
 
     public int coinChange(int[] coins, int amount) {
 
@@ -34,4 +30,71 @@ public class CoinChange {
         return (dp[amount]>amount)? -1 : dp[amount];
 
     }
+
+    /*
+     Dp caching is based on index and amount.
+     Same approach as Coin change 2 where we try to get no of ways.
+     */
+    public int coinChangeTopDown(int[] coins, int amount) {
+        Integer[][] dp = new Integer[coins.length][amount + 1];
+        int result = recur(coins, amount, coins.length-1, dp, amount+1);
+        return (result==amount+1)?-1:result;
+    }
+
+    /*
+        Approach by including or not including a coin.
+     */
+    private int recur(int[] coins, int total, int i, Integer[][] dp, int max) {
+
+        if(total==0)
+            return 0;
+
+        if(total<0 || i<0)
+            return max;
+
+        if(dp[i][total]!=null)
+            return dp[i][total];
+
+        int result1 = 1+recur(coins, total-coins[i], i, dp, max);
+        int result2 = recur(coins, total, i-1, dp, max);
+
+        dp[i][total] = Math.min(result1,result2);
+        return dp[i][total];
+    }
+
+    /*
+        Approach by iterating all coins.
+     */
+    public int coinChangeTopDown2(int[] coins, int amount) {
+        Map<Integer,Integer> map = new HashMap<>();
+
+        int result = recur(coins, amount, map, amount+1);
+        return result==(amount+1)?-1:result;
+    }
+
+    private int recur(int[] coins, int amount, Map<Integer,Integer> cache, int max) {
+        if(amount==0)
+            return 0;
+
+        if(amount<0)
+            return max;
+
+        if(cache.containsKey(amount))
+            return cache.get(amount);
+
+        int result = max;
+        for(int i=0;i<coins.length;i++) {
+            result = Math.min(result,1+recur(coins, amount-coins[i], cache, max));
+        }
+
+        cache.put(amount, result);
+        return cache.get(amount);
+    }
+
+    public static void main(String[] args) {
+
+        int[] coins = {1,2,5};
+        System.out.println(new CoinChange().coinChangeTopDown(coins, 11));
+    }
+
 }

@@ -17,8 +17,6 @@ public class CarFleet {
         Deque<Map.Entry<Integer,Integer>> stack = new LinkedList<>();
         for(Map.Entry<Integer,Integer> entry : map.entrySet()) {
             if(!stack.isEmpty() && ((target-(float)stack.peek().getKey())/stack.peek().getValue())<((target-(float)entry.getKey())/entry.getValue())) {
-                // stack.pop();
-                // stack.push(entry);
                 stack.push(entry);
             } else if(stack.isEmpty()) {
                 stack.push(entry);

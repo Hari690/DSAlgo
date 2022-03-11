@@ -19,6 +19,22 @@ boundaries to calculate the value obtained because of it and add with value obta
 part and right part.
  */
 public class BurstBaloons {
+
+    public int maxBalloons(int[] iNums) {
+        int[] nums = new int[iNums.length + 2];
+        int n = 1;
+        for (int x : iNums) if (x > 0) nums[n++] = x;
+        nums[0] = nums[n++] = 1;
+
+
+        int[][] dp = new int[n][n];
+
+        for(int i=0;i<dp.length;i++)
+            Arrays.fill(dp[i],-1);
+
+        return burst(nums, 1, n - 2, dp);
+    }
+
     private int burst(int[] nums, int left, int right, int[][] dp) {
         if(left>right)
             return 0;
@@ -32,20 +48,5 @@ public class BurstBaloons {
             dp[left][right]=ans;
         }
         return ans;
-    }
-
-    public int maxCoins(int[] iNums) {
-        int[] nums = new int[iNums.length + 2];
-        int n = 1;
-        for (int x : iNums) if (x > 0) nums[n++] = x;
-        nums[0] = nums[n++] = 1;
-
-
-        int[][] dp = new int[n][n];
-
-        for(int i=0;i<dp.length;i++)
-            Arrays.fill(dp[i],-1);
-
-        return burst(nums, 1, n - 2, dp);
     }
 }

@@ -1,6 +1,7 @@
 package problems;
 
 import java.util.Random;
+import java.util.TreeMap;
 
 /**
  * You are given an array of positive integers w where w[i] describes the weight of ith index (0-indexed).
@@ -11,30 +12,21 @@ import java.util.Random;
  * More formally, the probability of picking index i is w[i] / sum(w).
  */
 public class RandomPickWithWeight {
-    Random random;
-    int[] wSums;
-
+    int cnt=0;
+    TreeMap<Integer, Integer> map= new TreeMap<>();
+    Random rnd= new Random();
     public RandomPickWithWeight(int[] w) {
-        this.random = new Random();
-        for(int i=1; i<w.length; ++i)
-            w[i] += w[i-1];
-        this.wSums = w;
+        for (int idx=0; idx<w.length; idx++){
+            cnt+=w[idx];
+            //buckets to index mapping
+            map.put(cnt, idx);
+        }
     }
 
     public int pickIndex() {
-        int len = wSums.length;
-        int idx = random.nextInt(wSums[len-1]) + 1;
-        int left = 0, right = len - 1;
-        // search position
-        while(left < right){
-            int mid = left + (right-left)/2;
-            if(wSums[mid] == idx)
-                return mid;
-            else if(wSums[mid] < idx)
-                left = mid + 1;
-            else
-                right = mid;
-        }
-        return left;
+        // find key that's higher using random until end.
+        int key = map.higherKey(rnd.nextInt(cnt));
+        // return index.
+        return map.get(key);
     }
 }

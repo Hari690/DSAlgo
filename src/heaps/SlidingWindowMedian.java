@@ -47,6 +47,7 @@ public class SlidingWindowMedian {
                 } else {
                     result[i-k+1] = (double)maxHeap.peek();
                 }
+                // remove from max, if not done remove from min.
                 boolean removed = maxHeap.remove(nums[i-k+1]);
                 if(!removed)
                     minHeap.remove(nums[i-k+1]);

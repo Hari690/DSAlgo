@@ -38,4 +38,10 @@ public class Permutation2 {
             }
         }
     }
+
+    public static void main(String[] args) {
+        Permutation2 solution = new Permutation2();
+        int[] nums = {1,1,2};
+        solution.permuteUnique(nums);
+    }
 }

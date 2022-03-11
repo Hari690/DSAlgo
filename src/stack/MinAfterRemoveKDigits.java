@@ -12,6 +12,12 @@ import java.util.Stack;
  * return the smallest possible integer after removing k digits from num.
  */
 public class MinAfterRemoveKDigits {
+
+    /*
+        Intiution is to use a monotonic stack of increasing values and we remove characters if thats'
+        not the case. Else we can remove from end of stack.
+        Finally remove leading zeroes and convert to a string.
+     */
     public String removeKdigits(String num, int k) {
         if(k==num.length())
             return "0";

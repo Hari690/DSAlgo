@@ -19,6 +19,12 @@ public class CoinChangeWays {
         return getWays(coins, amount, coins.length-1, dp);
     }
 
+    /*
+        If we iterate all coins as in Coin change 1 then we would end up with duplicates(1,1,2) & (2,1,1).
+        So to avoid them we can use knapsack solution where we can do 2^n by doing 2 cases where we add
+        an element and don't add an element in one direction.
+        We can cache those values based on amount and index.
+     */
     private int getWays(int[] coins, int total, int i, Integer[][] dp) {
         if(total==0)
             return 1;
@@ -32,5 +38,11 @@ public class CoinChangeWays {
         int no = getWays(coins, total-coins[i], i, dp) + getWays(coins, total, i-1, dp);
         dp[i][total] = no;
         return no;
+    }
+
+    public static void main(String[] args) {
+        CoinChangeWays coinChangeWays = new CoinChangeWays();
+        int[] coins = {1,2,5};
+        coinChangeWays.change(5, coins);
     }
 }

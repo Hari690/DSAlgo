@@ -38,13 +38,13 @@ public class BuyAndSellStockWithCooldown {
         if(cache.containsKey(index +String.valueOf(buying)))
             return cache.get(index +String.valueOf(buying));
         if(buying) {
-            // can only buy or cooldown.
+            // can only buy or cooldown(do nothing).
             int buy = maxprofit(prices, index+1, !buying, cache)-prices[index];
             int cooldown = maxprofit(prices, index+1, buying, cache);
             cache.put(index +String.valueOf(buying),Math.max(buy, cooldown));
             return cache.get(index +String.valueOf(buying));
-            // can sell with mandatory cooldown or stay in cooldown
         } else {
+            // can sell with mandatory cooldown or stay in cooldown.
             int sell = maxprofit(prices, index+2, !buying, cache)+prices[index];
             int cooldown = maxprofit(prices, index+1, buying, cache);
             cache.put(index +String.valueOf(buying),Math.max(sell, cooldown));

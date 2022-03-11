@@ -55,7 +55,8 @@ public class SingleNumber2 {
                     sum++;
             sum %= 3;
             // check if i'th bit is present and or
-            res |= sum<<i;
+            if(sum==1)
+                res |= 1<<i;
         }
         return res;
     }

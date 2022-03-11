@@ -10,8 +10,11 @@ package array;
  * Output: [1,3,2]
  */
 public class NextPermutation {
-
     /*
+        1. Peak rightmost element.
+        2. Find element to right of peak which lies between peak and it's previous element.
+        3. Swap that element and element to left of peak.
+        4. Reverse or sort elements to right of that element to get next greatest.
         The idea is to find the first element from the right where it breaks ascending order.
         Then check against the element on the left where the next greater element is on the right side.
         Swap that local maxima with the element on the left.

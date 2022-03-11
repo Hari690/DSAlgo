@@ -2,6 +2,7 @@ package dynamicprogramming;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.OptionalInt;
 
 /**
@@ -13,6 +14,7 @@ import java.util.OptionalInt;
     This is the Subset sum problem.
     Similar technique can be used to also solve Minimum subset sum difference where we can try to do subset sum against sum/2 and try
     to find the value closest to it which can represent sum of a single set.
+    It's a variation of 0/1 knapsack.
  */
 public class PartitionSet {
 
@@ -53,5 +55,22 @@ public class PartitionSet {
         }
 
         return dp[nums.length-1][sum];
+    }
+
+    private boolean check(int[] nums, int sum, int index, int total, Map<String,Boolean> map) {
+        if(index==nums.length || total>sum)
+            return false;
+
+        if(total==sum)
+            return true;
+
+        String key = index + " " + total;
+        if(map.containsKey(key))
+            return map.get(key);
+
+        boolean result = check(nums,sum,index+1,total+nums[index],map) ||
+            check(nums,sum,index+1,total,map);
+        map.put(key, result);
+        return result;
     }
 }

@@ -75,6 +75,9 @@ class Graph {
     }
 }
 
+/*
+used for weighted graphs.
+ */
 public class DijkstrasAlgorithm {
     public static void main(String arg[]) {
         int V = 6;

@@ -22,12 +22,12 @@ public class HouseRobber2 {
         if ( nums.length==1){
             return nums[l];
         }
-        int p1 = nums[l];
-        int p2 = Math.max(nums[l],nums[l+1]);
-        for ( int i=l+2;i<r;i++) {
-            int temp=p2;
-            p2=Math.max(p1+nums[i],p2);
-            p1=temp;
+        int p1 = 0;
+        int p2 = 0;
+        for ( int i=l;i<r;i++) {
+            int temp=Math.max(p1+nums[i],p2);
+            p1=p2;
+            p2=temp;
 
         }
         return p2;
