@@ -1,5 +1,6 @@
 package array;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,7 +12,9 @@ public class Gemini {
 
         Gemini anagrams = new Gemini();
 
-        System.out.println(anagrams.shuffleString("abc"));
+        for(int i=0;i<10;i++)
+            System.out.println(anagrams.shuffleString("abcabcabcabcabcabcabcabc"));
+
         System.out.println(anagrams.checkAnagrams("abc","bac"));
         System.out.println(anagrams.checkAnagrams("abc","bacd"));
         System.out.println(anagrams.checkAnagrams("abc","aabc"));
@@ -45,7 +48,7 @@ public class Gemini {
     }
 
     public String shuffleString(String s) {
-        List<Character> list = new LinkedList<>();
+        List<Character> list = new ArrayList<>();
         for(char c : s.toCharArray()) {
             list.add(c);
         }
@@ -54,7 +57,8 @@ public class Gemini {
         for(int i=0;i<s.length();i++) {
             int randIndex = random.nextInt(list.size());
             result.append(list.get(randIndex));
-            list.remove(randIndex);
+            list.set(randIndex, list.get(list.size()-1));
+            list.remove(list.size()-1);
         }
         return result.toString();
     }
