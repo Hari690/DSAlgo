@@ -1,16 +1,15 @@
-package array;
+package string;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class Gemini {
+public class GeminiShuffleString {
     public static void main(String[] args) {
 
-        Gemini anagrams = new Gemini();
+        GeminiShuffleString anagrams = new GeminiShuffleString();
 
         for(int i=0;i<10;i++)
             System.out.println(anagrams.shuffleString("abcabcabcabcabcabcabcabc"));

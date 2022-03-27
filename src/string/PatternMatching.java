@@ -1,4 +1,4 @@
-package array;
+package string;
 
 /**
 You're tasked with writing a function which determines if a word matches a pattern. Ex. given the pattern "d3dog" and the word "datadog" your function should return True. However, given the same pattern and the word "datadogs", your function should return False.

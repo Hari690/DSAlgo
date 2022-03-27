@@ -25,7 +25,7 @@ class AlertProcessorTest {
     public void testWindow_containsAlertPlusLagDurationRecords() {
         long startTime = 1549573864;
         for(long time=startTime;time<startTime+200;time++) {
-            LogLine logLine = new LogLine("10.0.0.4","-","apache",String.valueOf(time),"POST /api/help HTTP/1.0","200","1234");
+            LogLine logLine = new LogLine("10.0.0.4","-","apache", string.valueOf(time),"POST /api/help HTTP/1.0","200","1234");
             alertProcessor.process(logLine);
         }
         assertEqual(alertProcessor.getAlertStats().size(),AlertProcessor.LAG_DURATIONS_SECS + AlertProcessor.ALERT_DURATION_SECS + 1);
@@ -36,7 +36,7 @@ class AlertProcessorTest {
         long startTime = 1549573864;
         for(int j=0;j<130;j++) {
             for(int i=0;i<20;i++) {
-                LogLine logLine = new LogLine("10.0.0.4","-","apache",String.valueOf(startTime),"POST /api/help HTTP/1.0","200","1234");
+                LogLine logLine = new LogLine("10.0.0.4","-","apache", string.valueOf(startTime),"POST /api/help HTTP/1.0","200","1234");
                 alertProcessor.process(logLine);
             }
             startTime++;
@@ -44,7 +44,7 @@ class AlertProcessorTest {
         boolean alertStatusBefore = alertProcessor.isInAlert();
         for(int j=0;j<80;j++) {
             for(int i=0;i<2;i++) {
-                LogLine logLine = new LogLine("10.0.0.4","-","apache",String.valueOf(startTime),"POST /api/help HTTP/1.0","200","1234");
+                LogLine logLine = new LogLine("10.0.0.4","-","apache", string.valueOf(startTime),"POST /api/help HTTP/1.0","200","1234");
                 alertProcessor.process(logLine);
             }
             startTime++;
