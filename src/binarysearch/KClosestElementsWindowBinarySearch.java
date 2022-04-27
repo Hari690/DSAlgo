@@ -20,8 +20,10 @@ import java.util.List;
  * Output: [1,2,3,4]
  */
 public class KClosestElementsWindowBinarySearch {
+    // one option is to find closest element to x using binary search.
+    // then use 2pointer to find k closest elements.
+    // optimised - search for window starting directly using binary search
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
-        //  search for window starting directly using binary search
         int left = 0;
         int right = arr.length-k;
 

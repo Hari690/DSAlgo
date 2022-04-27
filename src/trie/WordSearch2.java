@@ -14,6 +14,7 @@ public class WordSearch2 {
     public List<String> findWords(char[][] board, String[] words) {
         List<String> output = new ArrayList<>();
         createTrie(words);
+        // dfs on the trie
         for(int i=0;i<board.length;i++) {
             for(int j=0;j<board[0].length;j++) {
                 // traversing grid only once instead of once for each word.
@@ -26,6 +27,7 @@ public class WordSearch2 {
     private void createTrie(String[] words) {
         Trie trie = new Trie();
         this.trie = trie;
+
         for(String word : words ) {
             trie = this.trie;
             for(int i=0;i<word.length();i++) {

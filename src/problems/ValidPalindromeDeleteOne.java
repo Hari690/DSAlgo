@@ -3,7 +3,7 @@ package problems;
 /**
  * Given a non-empty string s, you may delete at most one character. Judge whether you can make it a palindrome.
  */
-public class ValidPalindrome {
+public class ValidPalindromeDeleteOne {
     public boolean validPalindrome(String s) {
         if( s==null || s.length()<=1) {
             return true;
@@ -33,7 +33,7 @@ public class ValidPalindrome {
     }
 
     public static void main(String[] args) {
-        ValidPalindrome validPalindrome = new ValidPalindrome();
+        ValidPalindromeDeleteOne validPalindrome = new ValidPalindromeDeleteOne();
         validPalindrome.validPalindrome("abca");
     }
 

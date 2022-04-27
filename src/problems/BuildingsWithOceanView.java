@@ -28,7 +28,8 @@ package problems;
  * Output: [3]
  * Explanation: Buildings cannot see the ocean if there are buildings of the same height to its right.
   */
-public class BuildingsWithOceanView {
+public class
+BuildingsWithOceanView {
     public int[] findBuildings(int[] heights) {
         int length = heights.length;
         boolean[] oceanView = new boolean[length];

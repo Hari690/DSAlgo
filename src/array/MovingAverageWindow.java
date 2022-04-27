@@ -1,66 +1,37 @@
 package array;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
+/**
+ * Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.
+ * Example:
+ * MovingAverage m = new MovingAverage(3);
+ * m.next(1) = 1
+ * m.next(10) = (1 + 10) / 2
+ * m.next(3) = (1 + 10 + 3) / 3
+ * m.next(5) = (10 + 3 + 5) / 3
+ */
 public class MovingAverageWindow {
-        private final double[] window; // use this data structure
+    private int sum;
+    private Queue<Integer> queue;
+    private int capacity;
 
-        private double sum = 0;
+    /** Initialize your data structure here. */
+    public MovingAverageWindow(int size) {
+        queue = new LinkedList<>();
+        sum = 0;
+        capacity = size;
+    }
 
-        private int lastElementIndex = 0;
-
-        private int count = 0;
-
-        // you can add other fields here
-
-        /*
-         * Always invoked with windowSize > 0
-         */
-        public MovingAverageWindow(final int windowSize) {
-            window = new double[windowSize];
+    public double next(int val) {
+        if (queue.size() == capacity) {
+            int sub = queue.poll();
+            sum = sum - sub;
         }
+        queue.offer(val);
+        sum = sum + val;
 
-        /*
-         * Adds the new number to window if it is larger than the value of 2.0d.
-         * If window is full then replace the oldest added number in the window with the number provided.
-         */
-        public void addNumberToWindow(final double number) {
-            if(number>2.0d) {
-                if(count <window.length) {
-                    window[count++] = number;
-                    sum+=number;
-                } else {
-                    if(lastElementIndex==window.length)
-                        lastElementIndex=0;
-                    sum-=window[lastElementIndex];
-                    sum+=number;
-                    window[lastElementIndex++] = number;
-                }
-            }
-        }
-
-        /*
-         * Return the average of the numbers added that are currently present in the window.
-         * Otherwise when no numbers in window return 0.0d
-         */
-        public double getAverage() {
-            return sum/ count;
-        }
-
-        /*
-         * Example of how a client would use this class
-         */
-        public static void main(String[] args) {
-            final MovingAverageWindow movingAverage = new MovingAverageWindow(4);
-            movingAverage.addNumberToWindow(1.5d);
-            movingAverage.addNumberToWindow(2.5d);
-            System.out.println(movingAverage.getAverage()); // prints 2.5
-            movingAverage.addNumberToWindow(3.0d);
-            movingAverage.addNumberToWindow(3.5d);
-            System.out.println(movingAverage.getAverage()); // prints 3.0
-            movingAverage.addNumberToWindow(2.0d);
-            System.out.println(movingAverage.getAverage()); // prints 3.0
-            movingAverage.addNumberToWindow(7.0d);
-            System.out.println(movingAverage.getAverage()); // prints 4.0
-            movingAverage.addNumberToWindow(6.5d);
-            System.out.println(movingAverage.getAverage()); // prints 5.0
-        }
+        return (double) sum / queue.size();
+    }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 public class MergeIntervals {
 
     public static void main(String[] args) {
-        int[][] intervals= {{1,4},{0,2},{3,5}};
+        int[][] intervals= {{1,4},{0,2},{3,5},{6,9},{7,12},{15,20}};
         new MergeIntervals().merge(intervals);
     }
 
@@ -25,6 +25,7 @@ public class MergeIntervals {
 
         List<int[]> result = new ArrayList<>();
         int[] newInterval = intervals[0];
+        // once we add this to result we keep modifying the boundaries.
         result.add(newInterval);
         for (int[] interval : intervals) {
             if (interval[0] <= newInterval[1]) // Overlapping intervals, move the end if needed

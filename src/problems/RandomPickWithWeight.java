@@ -1,5 +1,6 @@
 package problems;
 
+import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
@@ -24,9 +25,7 @@ public class RandomPickWithWeight {
     }
 
     public int pickIndex() {
-        // find key that's higher using random until end.
-        int key = map.higherKey(rnd.nextInt(cnt));
-        // return index.
-        return map.get(key);
+        Map.Entry<Integer,Integer> entry = map.higherEntry(rnd.nextInt(cnt));
+        return entry.getValue();
     }
 }

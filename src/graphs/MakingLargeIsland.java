@@ -60,7 +60,6 @@ public class MakingLargeIsland {
 
     public int largestIslandMap(int[][] grid) {
         Map<Integer, Integer> regionsArea = new HashMap<>();
-        regionsArea.put(0,0);
 
         int n = grid.length;
         int region = 2;
@@ -74,10 +73,13 @@ public class MakingLargeIsland {
             }
         }
 
+        // default value.
+        regionsArea.put(0,0);
         int max = regionsArea.getOrDefault(2,0);
         for(int r=0;r<n;r++){
             for(int c=0;c<n;c++){
                 if(grid[r][c]==0){
+                    // get contribution from each of it's neighbours.
                     Set<Integer> neighbors = new HashSet<>();
                     neighbors.add(r>0?grid[r-1][c]:0);
                     neighbors.add(c>0?grid[r][c-1]:0);

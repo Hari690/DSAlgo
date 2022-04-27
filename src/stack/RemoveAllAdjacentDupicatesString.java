@@ -20,18 +20,14 @@ import java.util.LinkedList;
  */
 public class RemoveAllAdjacentDupicatesString {
     public String removeDuplicates(String s) {
-        Deque<Character> stack = new LinkedList<>();
-        for(int i=0;i<s.length();) {
-            char c = s.charAt(i);
-            if(stack.isEmpty() || c!=stack.peek()) {
-                stack.push(c);
-            } else
-                stack.pop();
-            i++;
-        }
         StringBuilder sb = new StringBuilder();
-        while(!stack.isEmpty())
-            sb.append(stack.pop());
-        return sb.reverse().toString();
+        for(int i=0;i<s.length();i++) {
+            char c = s.charAt(i);
+            if(sb.length()==0 || c!=sb.charAt(sb.length()-1)) {
+                sb.append(c);
+            } else
+                sb.deleteCharAt(sb.length()-1);
+        }
+        return sb.toString();
     }
 }

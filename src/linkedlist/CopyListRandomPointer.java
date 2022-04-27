@@ -35,32 +35,41 @@ class NodeRandom {
     }
 }
 public class CopyListRandomPointer {
-    public NodeRandom copyRandomList(NodeRandom head) {
-        Map<NodeRandom,NodeRandom> map = new HashMap<>();
+    class Node {
+        int val;
+        Node next;
+        Node random;
 
-        NodeRandom newHead = createList(head, map);
-
-        NodeRandom node = head;
-        NodeRandom newNode = newHead;
-        while(node!=null) {
-            if(map.containsKey(node.random)) {
-                newNode.random = map.get(node.random);
-            }
-            node = node.next;
-            newNode = newNode.next;
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
         }
-        return newHead;
     }
+    public Node copyRandomList(Node head) {
+        Node temp1 = head;
+        Node newHead = null;
+        Node prev = null;
+        Map<Node,Node> map = new HashMap<>();
+        while(temp1!=null) {
+            Node node = new Node(temp1.val);
+            if(newHead==null)
+                newHead = node;
+            if(prev!=null)
+                prev.next = node;
+            prev = node;
+            map.put(temp1, node);
+            temp1 = temp1.next;
+        }
 
-    private NodeRandom createList(NodeRandom head, Map<NodeRandom,NodeRandom> map) {
-        if(head==null)
-            return null;
-
-        NodeRandom newHead = new NodeRandom(head.val);
-
-        map.put(head, newHead);
-
-        newHead.next = createList(head.next, map);
+        temp1 = head;
+        Node temp2 = newHead;
+        while(temp1!=null) {
+            if(temp1.random!=null)
+                temp2.random = map.get(temp1.random);
+            temp1 = temp1.next;
+            temp2 = temp2.next;
+        }
 
         return newHead;
     }

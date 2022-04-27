@@ -15,14 +15,14 @@ import java.util.List;
  */
 public class AllPathsSourceToTarget {
     private void dfs(int[][] graph, List<List<Integer>> result, List<Integer> path, int index){
-        path.add(index);
         if(index==graph.length-1)
             result.add(new ArrayList<>(path));
 
         for(Integer neighbour : graph[index]) {
+            path.add(neighbour);
             dfs(graph, result, path, neighbour);
+            path.remove(path.size()-1);
         }
-        path.remove(path.size()-1);
     }
 
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {

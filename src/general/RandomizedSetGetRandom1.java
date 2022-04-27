@@ -10,15 +10,17 @@ import java.util.HashMap;
  * boolean param_2 = obj.remove(val);
  * int param_3 = obj.getRandom();
  **/
-public class RandomizedSet {
+public class RandomizedSetGetRandom1 {
     private ArrayList<Integer> nums;
+    // since nos can be unique we can hold a mapping to indexes.
+    // By replacing with a HashMap<Integer, Set<Integer>> we can handle duplicate as well.
     private HashMap<Integer, Integer> locs;
     private java.util.Random rand = new java.util.Random();
 
     /** Initialize your data structure here. */
-    public RandomizedSet() {
-        nums = new ArrayList<Integer>();
-        locs = new HashMap<Integer, Integer>();
+    public RandomizedSetGetRandom1() {
+        nums = new ArrayList<>();
+        locs = new HashMap<>();
     }
 
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */

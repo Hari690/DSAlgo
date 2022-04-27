@@ -35,8 +35,11 @@ public class PopulateRightNextPointers {
         if(root==null)
             return;
 
+        // for the condition of last level. Here there won't be a left and right.
         if(root.left!=null && root.right!=null)
             root.left.next = root.right;
+
+        // for the condition of last node in a level. Here there won't be a next.
         if(root.right!=null && root.next!=null)
             root.right.next = root.next.left;
 

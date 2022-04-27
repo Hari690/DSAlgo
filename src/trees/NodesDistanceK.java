@@ -23,6 +23,10 @@ public class NodesDistanceK {
      * }
      */
     class Solution {
+
+        /*
+            Populate map with parent node and then simply use backtracking to populate nodes at distance K.
+         */
         public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
             Map<TreeNode,TreeNode> parentMap = new HashMap<>();
             helper(root.left, parentMap, root);

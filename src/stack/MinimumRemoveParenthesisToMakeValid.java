@@ -25,7 +25,7 @@ package stack;
  * Output: ""
  * Explanation: An empty string is also valid.
  */
-public class MinRemoveParenthesisToMakeValid {
+public class MinimumRemoveParenthesisToMakeValid {
     public String minRemoveToMakeValid(String s) {
         int open=0;
 

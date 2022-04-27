@@ -11,6 +11,8 @@ import java.util.Set;
  * In Dijkstra's the shortest node in terms of distance from a node is always finalized as their can't be a better distance to it.
  */
 class Graph {
+    // we keep a distance array and store max value there, we keep updating it for all the parents as long as
+    // new distance to that node is less than current distance.
     int dist[];
     Set<Integer> visited;
     PriorityQueue<Node> pqueue;

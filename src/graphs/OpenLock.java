@@ -80,9 +80,6 @@ public class OpenLock {
                     new2 = combo.value.substring(0,i)+(combo.value.charAt(i)-'0'-1)+combo.value.substring(i+1);
                 }
 
-//                 System.out.println(new1);
-//                 System.out.println(new2);
-
                 if(new1.equals(target) || new2.equals(target)) {
                     return combo.no+1;
                 }

@@ -7,9 +7,9 @@ import java.util.PriorityQueue;
 public class MeetingRooms2 {
     // Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] (si < ei), find the minimum number of conference rooms required.
 
-// For example,
-// Given [[0, 30],[5, 10],[15, 20]],
-// return 2.
+    // For example,
+    // Given [[0, 30],[5, 10],[15, 20]],
+    // return 2.
 
     /**
      * Definition for an interval.
@@ -25,9 +25,11 @@ public class MeetingRooms2 {
 
         PriorityQueue<Integer> heap = new PriorityQueue<>();
         for (int[] itv : intervals) {
+            // compare only with start time.
             if (heap.size()>0 && itv[0] >= heap.peek()) {
                 heap.poll();
             }
+            // insert only end time.
             heap.offer(itv[1]);
         }
         return heap.size();

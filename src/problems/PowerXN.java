@@ -25,7 +25,9 @@ public class PowerXN {
         if(n==1)
             return x;
         double ans = myPow(x, Math.abs(n/2));
+        // check positive or negative
         double result=(n>=0)?ans*ans:1/(ans*ans);
+        // check odd or even
         if(n%2==1 || n%2==-1){
             result=(n>=0)?result*x:(result*(1/x));
         }

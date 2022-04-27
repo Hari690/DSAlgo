@@ -11,6 +11,8 @@ import java.util.Deque;
  */
 
 /*
+    * Monotonic Decreasing Queue because we are not interested in smaller elements once we find a larger element.
+    * We only need to add indexes to queue.
     Idea is to keep a DoublyLinkedList with indexes where we remove from beginning when the window moves out
     and remove from end when the value is lesser than value that's coming in.
     So DLL is always maintained with just the relevant elements of the window.

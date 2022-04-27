@@ -1,19 +1,24 @@
 package problems;
 
+/**
+ * You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+ * Increment the large integer by one and return the resulting array of digits.
+ *
+ */
 public class PlusOne {
     public int[] plusOne(int[] digits) {
-        int idx = digits.length-1;
-        while(idx >= 0){
-            if(digits[idx] == 9)
-                digits[idx] = 0;
-            else{
-                digits[idx] += 1;
+        for(int i=digits.length-1;i>=0;i--) {
+            if(digits[i]==9) {
+                digits[i]=0;
+            } else {
+                digits[i]+=1;
                 return digits;
             }
-            idx--;
         }
-        int[] result = new int[digits.length + 1];
-        result[0] = 1;
+        int[] result = new int[digits.length+1];
+        for(int i=0;i<digits.length;i++)
+            result[i+1]=digits[i];
+        result[0]=1;
         return result;
     }
 }
