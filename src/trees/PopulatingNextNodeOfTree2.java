@@ -51,6 +51,9 @@ public class PopulatingNextNodeOfTree2 {
         if(root==null)
             return null;
 
+        // head is at top level and temp is at below level.
+        // connect temp to head left and right.
+        // use dummy to keep track of first node in a level and se head.
         Node head = root;
         while(head!=null) {
             Node dummy = new Node(0);

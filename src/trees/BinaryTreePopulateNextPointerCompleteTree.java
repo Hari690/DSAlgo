@@ -20,7 +20,7 @@ package trees;
  * right node, just like in Figure B. The serialized output is in level order as connected by the next pointers, with '#' signifying the
  * end of each level.
  */
-public class PopulateRightNextPointers {
+public class BinaryTreePopulateNextPointerCompleteTree {
 
     /*
         Key is recursion already links the previous levels so when we reach next level access left and right

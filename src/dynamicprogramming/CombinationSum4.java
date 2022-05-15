@@ -20,9 +20,7 @@ import java.util.Arrays;
 public class CombinationSum4 {
     public int combinationSum4(int[] nums, int target) {
         int[] dp = new int[target];
-
         Arrays.fill(dp, -1);
-
         return calculate(nums, target, 0, dp);
     }
 
@@ -39,8 +37,8 @@ public class CombinationSum4 {
         int total=0;
         for(int i=0;i<nums.length;i++) {
             total+=calculate(nums, target, sum+nums[i], dp);
-            dp[sum] = total;
         }
+        dp[sum] = total;
         return total;
     }
 }

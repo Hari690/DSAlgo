@@ -3,7 +3,10 @@ package graphs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 /**
  * You are given a network of n nodes, labeled from 1 to n. You are also given times, a list of travel times as directed edges times[i] =
@@ -15,9 +18,9 @@ import java.util.PriorityQueue;
  */
 
 /*
-Boils down to finding shortest path from one node to all others and check if all nodes are visited.
+    Max time taken is max of shortest time taken to all nodes from a start vertex.
  */
-public class NetworkDelayTime {
+public class NetworkDelayTimeDijkstras {
 
     public class Edge{
         int dst;
@@ -36,7 +39,7 @@ public class NetworkDelayTime {
         }
     }
     public int networkDelayTime(int[][] times, int N, int K) {
-        ArrayList<Edge>[] graph = new ArrayList[N+1];
+        List<Edge>[] graph = new ArrayList[N+1];
         for(int i=0;i<N+1;i++) graph[i] = new ArrayList<>();
         for(int i = 0; i<times.length; i++){
             Edge newE = new Edge(times[i][1],times[i][2]);
@@ -46,27 +49,24 @@ public class NetworkDelayTime {
         pair src = new pair(K,0);
         PriorityQueue<pair> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.dist));
         pq.add(src);
-        int [] len = new int[N+1];
-        Arrays.fill(len,Integer.MAX_VALUE);
-        len[K] = 0;
+        Set<Integer> visited = new HashSet<>();
         int time = 0;
         while(pq.size()!=0){
             pair rvtx = pq.remove();
+            if(visited.contains(rvtx.v))
+                continue;
+            visited.add(rvtx.v);
+            time = Math.max(time, rvtx.dist);
             for(Edge e : graph[rvtx.v]){
                 pair tmp = new pair(e.dst, e.wt + rvtx.dist);
-                // because of distance check cycle will get handled because we will not update unless distance is smaller.
-                if(len[tmp.v]>tmp.dist){
-                    pq.add(tmp);
-                    len[tmp.v] = e.wt+rvtx.dist;
-                }
+                if(visited.contains(tmp.v))
+                    continue;
+                pq.add(tmp);
             }
         }
-        for(int i=1;i<=N;++i)
-        {
-            if(len[i]==Integer.MAX_VALUE)
-                return -1;
-            time = Math.max(time,len[i]);
-        }
+        if(visited.size()!=N)
+            return -1;
+
         return time;
     }
 }

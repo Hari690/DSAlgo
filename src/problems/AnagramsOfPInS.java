@@ -53,7 +53,6 @@ public class AnagramsOfPInS {
                 }
                 begin++;
             }
-
         }
         return result;
     }
