@@ -17,7 +17,7 @@ public class WordSearch2 {
         // dfs on the trie
         for(int i=0;i<board.length;i++) {
             for(int j=0;j<board[0].length;j++) {
-                // traversing grid only once instead of once for each word.
+                // traversing grid only once with each character instead of once for each word.
                 findWord(board, i, j, trie, output);
             }
         }

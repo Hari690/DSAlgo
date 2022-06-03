@@ -19,7 +19,7 @@ package array;
  *
  * You can assume that moves is valid (It follows the rules of Tic-Tac-Toe), the grid is initially empty and A will play first.
  */
-public class TicTacToe {
+public class TicTacToeGame {
 
     // use 1 and -1 to demarcate the players and keep filling the 1-D array to keep track.
     // whenever it's size equals 3 we have a winner.

@@ -22,10 +22,21 @@ import java.util.PriorityQueue;
  * rightmost buildings should be part of the skyline's contour.
  */
 public class SkylineProblem {
+    /*
+        Split into (x,-h) & (y,h) to denote starting and ending and add to a list.
+        Sort the collection based on coordinates i.e x and y.
+        Iterate them and check if we see a starting or ending point. If starting
+        add to a pq else remove from pq.
+        Set a initial value in the heap and a preMax.
+        For every point check if the current top of heap is different from previous max.
+        If yes add to result and update preMax.
 
-    public List<int[]> getSkyline(int[][] buildings) {
-        List<int[]> res = new ArrayList<>();
+     */
+    public List<List<Integer>> getSkyline(int[][] buildings) {
+        List<List<Integer>> res = new ArrayList<>();
         List<int[]> height = new ArrayList<>();     // height list to store all buildings' heights
+
+        // can also use S & E to signify starting and ending points.
         for (int[] b : buildings) {
             height.add(new int[]{b[0], - b[2]});    // start of a building, height stored as negtive
             height.add(new int[]{b[1], b[2]});      // end of a building, height stored as positive
@@ -48,7 +59,7 @@ public class SkylineProblem {
             int curMax = pq.peek();
             // if the max height is different from the previous one, that means a critical point is met, add to result list
             if (curMax != preMax) {
-                res.add(new int[]{h[0], curMax});
+                res.add(List.of(h[0], curMax));
                 preMax = curMax;
             }
         }

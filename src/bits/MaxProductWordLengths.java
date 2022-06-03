@@ -19,7 +19,7 @@ public class MaxProductWordLengths {
             value[i] = 0;
             for (int j = 0; j < tmp.length(); j++) {
                 // char to number and use that to set bit position
-                // i.e convert to integer and or it. left shift by one to avoid zero.
+                // i.e convert to integer and or it. left shift one by that many digits.
                 value[i] |= 1 << (tmp.charAt(j) - 'a');
             }
         }

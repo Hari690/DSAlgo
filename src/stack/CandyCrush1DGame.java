@@ -15,7 +15,7 @@ import java.util.Stack;
  * 1. Remove 3 'a': "aaabbbbc" => "bbbbc"
  * 2. Remove 4 'b': "bbbbc" => "c"
  */
-public class CandyCrush1D {
+public class CandyCrush1DGame {
 
     /*
         We keep accumlating characters and occurences in two separate stacks.
@@ -28,10 +28,12 @@ public class CandyCrush1D {
         for (int i = 0; i < s.length(); ) {
             char c = s.charAt(i);
             if (stack.isEmpty() || c != stack.peek()) {
+                // when we have enough candies to crush
                 if (!stack.isEmpty() && occurence.peek() >= 3) {
                     stack.pop();
                     occurence.pop();
                 } else {
+                    // when we have to insert a new candy
                     stack.push(c);
                     occurence.push(1);
                     i++;
@@ -63,7 +65,7 @@ public class CandyCrush1D {
     }
 
     public static void main(String[] args) {
-        CandyCrush1D solution = new CandyCrush1D();
+        CandyCrush1DGame solution = new CandyCrush1DGame();
         System.out.println(solution.solution("aaabbbc"));
         System.out.println(solution.solution("aabbbacd"));
         System.out.println(solution.solution("aabbccddeeedcba"));

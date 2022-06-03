@@ -1,4 +1,4 @@
-package dynamicprogramming;
+package matrix;
 
 import java.util.Stack;
 
