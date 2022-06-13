@@ -1,5 +1,7 @@
 package dynamicprogramming;
 
+import java.util.Arrays;
+
 /**
  * Given two strings word1 and word2, return the minimum number of operations required to convert word1 to word2.
  *
@@ -55,5 +57,44 @@ public class EditDistance {
                 }
         }
         return output[word1.length()][word2.length()];
+    }
+
+    public int minDistanceTopDown(String word1, String word2) {
+        int[][] dp = new int[word1.length()][word2.length()];
+        for(int i=0;i<word1.length();i++)
+            Arrays.fill(dp[i],-1);
+        return findMinDistance(0,0,word1,word2, dp);
+    }
+
+    private int findMinDistance(int i, int j, String word1, String word2, int[][] dp) {
+        if(i==word1.length() && j==word2.length())
+            return 0;
+
+        if(i==word1.length())
+            return word2.length()-j;
+
+        if(j==word2.length())
+            return word1.length()-i;
+
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+
+        if(word1.charAt(i)==word2.charAt(j)) {
+            int result = findMinDistance(i+1, j+1, word1, word2, dp);
+            dp[i][j]=result;
+            return result;
+        } else {
+
+            // insert
+            int max1 = 1 + findMinDistance(i+1, j, word1, word2, dp);
+            // delete
+            int max2 = 1 + findMinDistance(i, j+1, word1, word2, dp);
+            //replace
+            int max3 = 1 + findMinDistance(i+1, j+1, word1, word2, dp);
+
+            int result = Math.min(max1, Math.min(max2, max3));
+            dp[i][j]=result;
+            return result;
+        }
     }
 }

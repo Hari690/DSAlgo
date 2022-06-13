@@ -22,6 +22,8 @@ public class MinOperationXZero {
         if(sum==target) {
             return nums.length;
         }
+        if(sum<0)
+            return -1;
         sum-=target;
         Map<Integer, Integer> map = new HashMap<>();
         int runningSum = 0;
@@ -35,5 +37,30 @@ public class MinOperationXZero {
             map.put(runningSum, i);
         }
         return (minLength==0)?-1:nums.length-minLength;
+    }
+
+    public int minOperationsSW(int[] nums, int x) {
+        int sum = 0;
+
+        for(int num : nums)
+            sum+=num;
+
+        sum = sum - x;
+        if(sum==0)
+            return nums.length;
+
+        int currSum = 0;
+        int left = 0;
+        int max = 0;
+        for(int i=0;i<nums.length;i++) {
+            currSum+=nums[i];
+            while(left<=i && currSum>sum) {
+                currSum-=nums[left];
+                left++;
+            }
+            if(currSum==sum)
+                max = Math.max(max, i-left+1);
+        }
+        return (max==0)?-1:(nums.length - max);
     }
 }
