@@ -1,5 +1,6 @@
 package linkedlist;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -30,7 +31,7 @@ public class MergeKLists {
 
     public static ListNode mergeKLists1(ListNode[] lists) {
         ListNode output = new ListNode(0);
-        PriorityQueue<ListNode> minHeap = new PriorityQueue<>((a,b)->a.val-b.val);
+        PriorityQueue<ListNode> minHeap = new PriorityQueue<>(Comparator.comparingInt(a -> a.val));
         for ( ListNode list : lists) {
             if(list!=null)  minHeap.offer(list);
         }

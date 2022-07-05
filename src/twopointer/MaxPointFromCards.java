@@ -12,6 +12,7 @@ package twopointer;
  */
 /*
     Fixed sized window.
+    Notice we can generate all combinations by making the window size (n-k) and getting sum of k.
  */
 public class MaxPointFromCards {
     public int maxScore(int[] arr, int k) {

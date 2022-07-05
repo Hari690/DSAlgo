@@ -15,6 +15,9 @@ import java.util.PriorityQueue;
  *
  * For example, the itinerary ["JFK", "LGA"] has a smaller lexical order than ["JFK", "LGB"].
  * You may assume all tickets form at least one valid itinerary. You must use all the tickets once and only once.
+ *
+ * Input: tickets = [["MUC","LHR"],["JFK","MUC"],["SFO","SJC"],["LHR","SFO"]]
+ * Output: ["JFK","MUC","LHR","SFO","SJC"]
  */
 public class ReconstructItinerary {
 

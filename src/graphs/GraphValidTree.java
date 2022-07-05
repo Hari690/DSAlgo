@@ -42,18 +42,18 @@ public class GraphValidTree {
         return false;
     }
     public boolean validTree(int n, int[][] edges) {
-        List<List<Integer>> adj_list = createGraph(n, edges);
+        List<List<Integer>> adjList = createGraph(n, edges);
         int cnt = 0 ;
         boolean[] vis = new boolean[n];
         int par = -1;
         for(int i=0;i<n;i++){
             if(!vis[i]){
                 cnt++;
-                if(hasCycle(i,vis,par,adj_list)){
+                if(hasCycle(i,vis,par,adjList)){
                     return false;
                 }
             }
         }
-        return cnt==1;
+        return cnt==n;
     }
 }

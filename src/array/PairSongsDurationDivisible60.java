@@ -12,11 +12,12 @@ public class PairSongsDurationDivisible60 {
         for(int songTime : times)
             modTimes[songTime % 60]++;
 
-        // will contain numbers from 0 to 30.
+        // will contain numbers from 0 to 30. 0 & 30 form pairs with itself so treated as special cases.
         int totalPairs = 0;
         totalPairs += findPairs(modTimes[0]);
         totalPairs += findPairs(modTimes[30]);
 
+        // till 29 to avoid duplicates.
         for(int i = 1; i <= 29; i++)
             totalPairs += modTimes[i] * modTimes[60 - i];
 
