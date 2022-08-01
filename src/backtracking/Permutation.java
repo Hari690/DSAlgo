@@ -25,14 +25,14 @@ public class Permutation {
             return;
         }
         for(int i=0; i<nums.length; i++) {
-            if(tmpSet.contains(nums[i])) {
-                continue;
+            if(!tmpSet.contains(nums[i])) {
+                current.add(nums[i]);
+                tmpSet.add(nums[i]);
+                helperFunction(result, current, tmpSet, nums);
+                tmpSet.remove(current.get(current.size() - 1));
+                current.remove(current.size() - 1);
+                ;
             }
-            current.add(nums[i]);
-            tmpSet.add(nums[i]);
-            helperFunction(result, current,tmpSet, nums);
-            tmpSet.remove(current.get(current.size()-1));
-            current.remove(current.size()-1);
         }
     }
 }

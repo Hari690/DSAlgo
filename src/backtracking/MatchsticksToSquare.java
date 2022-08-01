@@ -10,6 +10,7 @@ import java.util.Arrays;
  * Return true if you can make this square and false otherwise.
  */
 /*
+Loop using the sides of the square rather than matchstick array to make it simpler.
 Sorting the input array DESC will make the DFS process run much faster. Reason behind
  this is we always try to put the next matchstick in the first subset.
  If there is no solution, trying a longer matchstick first will get to negative conclusion earlier.
@@ -60,7 +61,8 @@ public class MatchsticksToSquare {
 
     public static void main(String[] args) {
         MatchsticksToSquare matchsticksToSquare = new MatchsticksToSquare();
-        int[] arr = {1,1,2,2,2};
+        //int[] arr = {1,1,2,2,2};
+        int[] arr ={5,5,5,5,4,4,4,4,3,3,3,3};
         System.out.println(matchsticksToSquare.makesquare(arr));
     }
 }

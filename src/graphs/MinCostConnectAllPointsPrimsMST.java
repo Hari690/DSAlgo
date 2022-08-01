@@ -26,6 +26,7 @@ public class MinCostConnectAllPointsPrimsMST {
     public int minCostConnectPoints(int[][] points) {
         // create adj list of points where a point points to points after it.
         // also contains distance between one point to another.
+        // memory complexity is O(n2) and time is O(n2logn).
         Map<Integer, List<Pair>> adjList = new HashMap<>();
 
         for(int i=0;i<points.length;i++) {

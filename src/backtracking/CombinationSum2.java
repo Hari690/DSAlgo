@@ -37,8 +37,8 @@ public class CombinationSum2 {
         }
         if (target < 0) return;
         for (int i = cur; i < cand.length; i++){
-            // after we sort and backtrack we skip duplicate adjacent elements because they result in same sets.
-            // means don't start again from same element eg: (1,7) & (1,7) above.
+            // At the same level of recursion i.e when cur is different from i we need to skip if
+            // current element is same as previous element.
             if (i > cur && cand[i] == cand[i-1]) continue;
             path.add(path.size(), cand[i]);
             dfs_com(cand, i+1, target - cand[i], path, res);

@@ -7,6 +7,16 @@ import java.util.Map;
  * Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
  *
  * In other words, return true if one of s1's permutations is the substring of s2.
+ *
+ * Example 1:
+ *
+ * Input: s1 = "ab", s2 = "eidbaooo"
+ * Output: true
+ * Explanation: s2 contains one permutation of s1 ("ba").
+ * Example 2:
+ *
+ * Input: s1 = "ab", s2 = "eidboaoo"
+ * Output: false
  */
 public class PermutationInAString {
     public boolean checkInclusion(String s1, String s2) {
@@ -24,6 +34,7 @@ public class PermutationInAString {
         if(compare(map1,map2))
             return true;
 
+        // fixed size sliding window with length l1.
         int left=0;
         for(int i=s1.length();i<s2.length();i++) {
             Integer val = map2.get(s2.charAt(left));

@@ -8,7 +8,7 @@ import java.util.List;
  *
  * In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
  */
-public class PascalTriangle {
+public class PascalsTriangle {
     public List<List<Integer>> generate(int numRows)
     {
         List<List<Integer>> allrows = new ArrayList<>();
@@ -25,7 +25,7 @@ public class PascalTriangle {
     }
 
     public static void main(String[] args) {
-        PascalTriangle pascalTriangle = new PascalTriangle();
+        PascalsTriangle pascalTriangle = new PascalsTriangle();
         pascalTriangle.generate(3);
     }
 }

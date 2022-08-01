@@ -25,7 +25,7 @@ class AlertProcessorTest {
     public void testWindow_containsAlertPlusLagDurationRecords() {
         long startTime = 1549573864;
         for(long time=startTime;time<startTime+200;time++) {
-            LogLine logLine = new LogLine("10.0.0.4","-","apache", string.valueOf(time),"POST /api/help HTTP/1.0","200","1234");
+            LogLine logLine = new LogLine("10.0.0.4","-","apache", String.valueOf(time),"POST /api/help HTTP/1.0","200","1234");
             alertProcessor.process(logLine);
         }
         assertEqual(alertProcessor.getAlertStats().size(),AlertProcessor.LAG_DURATIONS_SECS + AlertProcessor.ALERT_DURATION_SECS + 1);
