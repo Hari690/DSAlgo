@@ -14,12 +14,15 @@ public class MinIncrementForUnique {
 
         // Time Complexity: O(NlogN) for sorting
         // Space: O(1) for in-space sort
-        if (A.length == 0) return 0;
+        if(A == null || A.length == 0){
+            return 0;
+        }
         Arrays.sort(A);
-        int pre = A[0], res = 0;
-        for (int i = 1; i < A.length; i++) {
-            pre = Math.max(pre + 1, A[i]);
-            res += pre - A[i];
+        int res = 0, prev = A[0];
+        for(int i = 1; i < A.length; i++){
+            int expect = prev + 1;
+            res += A[i] > expect ? 0 : expect - A[i];
+            prev = Math.max(expect, A[i]);
         }
         return res;
     }

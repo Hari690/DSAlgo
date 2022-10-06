@@ -11,6 +11,10 @@ import java.util.Queue;
  * m.next(10) = (1 + 10) / 2
  * m.next(3) = (1 + 10 + 3) / 3
  * m.next(5) = (10 + 3 + 5) / 3
+ *
+ * hashmap with value, expiry time as a pair like,
+ * Hashmap <int, List>; // {key, {value, expiry}}
+ * Whenever you query for a key, check the expiry and based on that remove or return the key from map.
  */
 public class MovingAverageWindow {
     private int sum;

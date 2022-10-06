@@ -1,7 +1,10 @@
 package hashmap;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Implement a SnapshotArray that supports the following interface:
@@ -42,4 +45,29 @@ public class SnapshotArray {
         }
         return currentMap.get(index);
     }
+
+    // Do the search using a TreeMap like data structure to make it more efficient.
+//    List<TreeMap<Integer, Integer>> arr;
+//    int currId = 0;
+//
+//    public SnapshotArray(int length) {
+//        arr = new ArrayList();
+//
+//        for (int i = 0; i < length; i++) {
+//            arr.add(i, new TreeMap<Integer, Integer>());
+//            arr.get(i).put(0, 0);
+//        }
+//    }
+//
+//    public void set(int index, int val) {
+//        arr.get(index).put(currId, val);
+//    }
+//
+//    public int snap() {
+//        return currId++;
+//    }
+//
+//    public int get(int index, int snap_id) {
+//        return arr.get(index).floorEntry(snap_id).getValue();
+//    }
 }

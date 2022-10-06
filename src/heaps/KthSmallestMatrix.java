@@ -1,6 +1,7 @@
 package heaps;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -26,11 +27,15 @@ import java.util.PriorityQueue;
 public class KthSmallestMatrix {
 
     /*
-        Merge sort by adding first element of all rows followed by small elements in the row we take.
+        Merge sort by adding first element of all rows followed by finding small elements in the row we take.
+
+        Another option is to do binary search with the value of items.
+        For each mid value check how many smaller elements can be found.
+        Based on that continue iteration.
      */
     public int kthSmallest(int[][] matrix, int k) {
         int n = matrix.length;
-        PriorityQueue<Tuple> pq = new PriorityQueue<>((a, b)->a.val-b.val);
+        PriorityQueue<Tuple> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.val));
         for(int j=0;j<n;j++)
             pq.add(new Tuple(0,j,matrix[0][j]));
 
@@ -42,6 +47,7 @@ public class KthSmallestMatrix {
         }
         return pq.peek().val;
     }
+
     class Tuple{
         int x;
         int y;

@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
  * Return the vertical order traversal of the binary tree.
  */
 class TreeNodeLevel {
-    int row=0;
-    int col=0;
+    int row;
+    int col;
     TreeNode node;
     TreeNodeLevel(TreeNode n, int row, int col) {
         this.node = n;

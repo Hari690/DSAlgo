@@ -23,27 +23,27 @@ public class MaxLengthRepeatedSubarray {
 
     // Difference between this way and subsequence is here we use param to incrmement and unset count if there is a match
     // and use same variable to set max count for a call.
-    public int findLength(int[] nums1, int[] nums2) {
-        Map<String,Integer> map = new HashMap<String,Integer>();
-        return check(nums1, nums2, 0, 0, 0, map);
-    }
-
-    private int check(int[] nums1, int[] nums2, int i, int j, int count, Map<String,Integer> map) {
-        if(i==nums1.length || j==nums2.length)
-            return count;
-
-        String key = i+" "+j+" "+count;
-        if(map.get(key)!=null)
-            return map.get(key);
-        int count1 = count;
-        if(nums1[i]==nums2[j]) {
-            count1 = check(nums1, nums2, i+1, j+1, count+1, map);
+    public int findLength(int[] A, int[] B) {
+        if(A == null||B == null) return 0;
+        int m = A.length;
+        int n = B.length;
+        int max = 0;
+        //dp[i][j] is the length of longest common subarray ending with nums[i] and nums[j]
+        int[][] dp = new int[m + 1][n + 1];
+        for(int i = 0;i <= m;i++){
+            for(int j = 0;j <= n;j++){
+                if(i == 0 || j == 0){
+                    dp[i][j] = 0;
+                }
+                else{
+                    if(A[i - 1] == B[j - 1]){
+                        dp[i][j] = 1 + dp[i - 1][j - 1];
+                        max = Math.max(max,dp[i][j]);
+                    }
+                }
+            }
         }
-        int count2 = check(nums1, nums2, i+1, j, 0, map);
-        int count3 = check(nums1, nums2, i, j+1, 0, map);
-        int result = Math.max(count1,Math.max(count2,count3));
-        map.put(key,result);
-        return result;
+        return max;
     }
 
     public static void main(String[] args) {

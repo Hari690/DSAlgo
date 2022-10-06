@@ -1,6 +1,8 @@
 package array;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,24 +39,35 @@ import java.util.Map;
  *                                //   - The first, third, and fourth points
  */
 public class DetectSquares {
-    Map<String,Integer> map = null;
+    // list for unique int[] points
+    List<int[]> list;
+    // count map for points count
+    Map<String, Integer> countMap;
+
     public DetectSquares() {
-        map = new HashMap<>();
+        list = new ArrayList<>();
+        countMap = new HashMap<>();
     }
 
     public void add(int[] point) {
-        map.put(point[0]+" "+point[1],map.getOrDefault(point[0]+" "+point[1],0)+1);
+        String s = point[0] + "," + point[1];
+        if (countMap.containsKey(s)) {
+            countMap.put(s, countMap.get(s) + 1);
+        } else {
+            countMap.put(s, 1);
+            list.add(point);
+        }
     }
 
     public int count(int[] point) {
+        int currentX = point[0];
+        int currentY = point[1];
         int result = 0;
-        for(Map.Entry<String,Integer> entry : map.entrySet()) {
-            String[] coords = entry.getKey().split(" ");
-            if(Math.abs(Integer.parseInt(coords[0])-point[0]) == (Math.abs(Integer.parseInt(coords[1])-point[1]))) {
-                if(map.containsKey(point[0]+" "+coords[1]) && map.containsKey(coords[0]+" "+point[1])) {
-                    result+=map.get(point[0]+" "+coords[1]);
-                    result+=map.get(coords[0]+" "+point[1]);
-                }
+        for (int[] p : list) {
+            if (p[0] != currentX && p[1] != currentY && Math.abs(p[0] - currentX) == Math.abs(p[1] - currentY)) {
+                String otherPoint1 = currentX + "," + p[1];
+                String otherPoint2 = p[0] + "," + currentY;
+                result += countMap.getOrDefault(otherPoint1, 0) * countMap.getOrDefault(otherPoint2, 0) * countMap.get(p[0] + "," + p[1]);
             }
         }
         return result;

@@ -1,6 +1,5 @@
 package heaps;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -23,38 +22,33 @@ import java.util.PriorityQueue;
  * - Go to building 4 using your only ladder. You must use either bricks or ladders because 6 < 9.
  * It is impossible to go beyond building 4 because you do not have any more bricks or ladders.
  */
-public class FarthestBuildingYouCanReach {
+public class FarthestBuildingYouCanReachLaddersBricks {
 
     /*
-        Ladders are for the tallest buildings and bricks are for others. So we can use max heap.
+        Ladders are for the tallest buildings and bricks are for others. So we can use min heap.
     */
     public int furthestBuildingMaxHeap(int[] H, int B, int L) {
-        int len = H.length - 1;
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
-        for (int i = 0; i < len; i++) {
-            int diff = H[i+1] - H[i];
-            if (diff > 0) {
-                if (B>=diff) {
-                    pq.add(diff);
-                    B-=diff;
-                }
-                else if (L > 0) {
-                    if (!pq.isEmpty() && pq.peek()>diff) {
-                        int max = pq.poll();
-                        B+=max-diff;
-                        pq.add(diff);
-                    }
-                    L--;
-                }
-                else return i;
-            }
+        var n = H.length;
+        var ladderClimbs = new PriorityQueue<Integer>();
+
+        for (var i = 1; i < n; i++) {
+            var climb = H[i] - H[i - 1];
+            if (climb <= 0)
+                continue; // descent, skip
+
+            ladderClimbs.add(climb);
+            if (ladderClimbs.size() <= L)
+                continue; // use a ladder
+
+            if ((B -= ladderClimbs.poll()) < 0)
+                return i - 1; // insufficient bricks, terminate
         }
-        return len;
+        return n - 1;
     }
 
     public static void main(String[] args) {
         int[] buildings = {2,7,9,12};
-        FarthestBuildingYouCanReach farthestBuildingYouCanReach = new FarthestBuildingYouCanReach();
+        FarthestBuildingYouCanReachLaddersBricks farthestBuildingYouCanReach = new FarthestBuildingYouCanReachLaddersBricks();
         System.out.println(farthestBuildingYouCanReach.furthestBuildingMaxHeap(buildings, 5, 1));
     }
 }

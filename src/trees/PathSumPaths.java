@@ -3,6 +3,10 @@ package trees;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Given the root of a binary tree and an integer targetSum, return all root-to-leaf paths where the sum of the node values in the path equals targetSum. Each path should be returned as a list of the node values, not node references.
+ * A root-to-leaf path is a path starting from the root and ending at any leaf node. A leaf is a node with no children.
+ */
 public class PathSumPaths {
 
     public static void main(String[] args) {
@@ -39,6 +43,7 @@ public class PathSumPaths {
         if(root==null) {
             return;
         }
+        // only for root.
         if(root.left==null && root.right==null) {
             if ((sum + root.val) == total) {
                 output.add(root.val);

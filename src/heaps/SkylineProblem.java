@@ -24,11 +24,11 @@ import java.util.PriorityQueue;
 public class SkylineProblem {
     /*
         Split into (x,-h) & (y,h) to denote starting and ending and add to a list.
-        Sort the collection based on coordinates i.e x and y.
-        Iterate them and check if we see a starting or ending point. If starting
+        Sort the collection based on coordinates i.e x and y and have starting points first.
+        Iterate it using a pq and check if we see a starting or ending point. Pq stores the heights. If starting
         add to a pq else remove from pq.
         Set a initial value in the heap and a preMax.
-        For every point check if the current top of heap is different from previous max.
+        For every point check if the current top of pq is different from previous max.
         If yes add to result and update preMax.
 
      */
@@ -41,7 +41,7 @@ public class SkylineProblem {
             height.add(new int[]{b[0], - b[2]});    // start of a building, height stored as negtive
             height.add(new int[]{b[1], b[2]});      // end of a building, height stored as positive
         }
-        Collections.sort(height, (a, b) -> (a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]));     // sort the height list
+        Collections.sort(height, (a, b) -> (a[0] == b[0] ? a[1] - b[1] : a[0] - b[0]));     // sort the height list so starting points come first
 
         // a pq that stores all the encountered buildings' heights in descending order
         PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));

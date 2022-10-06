@@ -62,6 +62,8 @@ class LRUCache {
         remove(node);
         add(node);
     }
+
+    // insert at head
     private void add(Node node){
         // head will always be at dummy node.
         Node after = head.next;

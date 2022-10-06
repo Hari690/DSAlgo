@@ -2,6 +2,7 @@ package general;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -10,21 +11,21 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class CustomSchedulerService {
+public class ConfluentCustomSchedulerService {
 
     private final PriorityQueue<ScheduledTask> taskQueue;
     private final Lock lock = new ReentrantLock();
     private final Condition newTaskAdded = lock.newCondition();
     private final ThreadPoolExecutor workerExecutor ;
 
-    public CustomSchedulerService(int workerThreadSize) {
+    public ConfluentCustomSchedulerService(int workerThreadSize) {
         this.taskQueue = new PriorityQueue<>(Comparator.comparingLong(ScheduledTask::getScheduledTime));
         workerExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(workerThreadSize);
     }
 
     public void start(){
-        long timeToSleep =0;
-        while (true){
+        long timeToSleep;
+        while (true) {
             lock.lock();
             try{
                 while(taskQueue.isEmpty()){
@@ -32,31 +33,31 @@ public class CustomSchedulerService {
                 }
                 while (!taskQueue.isEmpty()){
                     timeToSleep = taskQueue.peek().getScheduledTime() - System.currentTimeMillis();
-                    if(timeToSleep <= 0){
+                    if(timeToSleep <= 0) {
                         break;
                     }
                     newTaskAdded.await(timeToSleep, TimeUnit.MILLISECONDS);
                 }
                 ScheduledTask task = taskQueue.poll();
-                long newScheduledTime = 0;
+                long newScheduledTime;
                 switch (task.getTaskType()){
                     case 1:
                         //this type of task will be executed only once
                         workerExecutor.submit(task.getRunnable());
                         break;
                     case 2:
-                        newScheduledTime = System.currentTimeMillis()+ task.getUnit().toMillis(task.getPeriod());
+                        newScheduledTime = System.currentTimeMillis()+ task.getPeriod();
                         workerExecutor.submit(task.getRunnable());
                         task.setScheduledTime(newScheduledTime);
                         taskQueue.add(task);
                         break;
-                    case 3:
-                        Future<?> future = workerExecutor.submit(task.getRunnable());
-                        future.get(); // will wait for the finish of this task
-                        newScheduledTime = System.currentTimeMillis()+ task.getUnit().toMillis(task.getDelay());
-                        task.setScheduledTime(newScheduledTime);
-                        taskQueue.add(task);
-                        break;
+//                    case 3:
+//                        Future<?> future = workerExecutor.submit(task.getRunnable());
+//                        future.get(); // will wait for the finish of this task
+//                        newScheduledTime = System.currentTimeMillis()+ task.getDelay();
+//                        task.setScheduledTime(newScheduledTime);
+//                        taskQueue.add(task);
+//                        break;
                 }
             }catch (Exception e){
                 System.out.println("some thing wrong in start");
@@ -65,7 +66,6 @@ public class CustomSchedulerService {
                 lock.unlock();
             }
         }
-
     }
 
     /**
@@ -75,7 +75,7 @@ public class CustomSchedulerService {
         lock.lock();
         try{
             long scheduledTime = System.currentTimeMillis() + unit.toMillis(delay);
-            ScheduledTask task = new ScheduledTask(command, scheduledTime, 1, null, null, unit);
+            ScheduledTask task = new ScheduledTask(command, scheduledTime, 1, null, null);
             taskQueue.add(task);
             newTaskAdded.signalAll();
         }catch (Exception e){
@@ -94,12 +94,12 @@ public class CustomSchedulerService {
         lock.lock();
         try{
             long scheduledTime = System.currentTimeMillis() + unit.toMillis(initialDelay);
-            ScheduledTask task = new ScheduledTask(command, scheduledTime, 2, period, null, unit);
+            ScheduledTask task = new ScheduledTask(command, scheduledTime, 2, period, null);
             taskQueue.add(task);
             newTaskAdded.signalAll();
-        }catch (Exception e){
+        } catch (Exception e){
             System.out.println("some thing wrong in scheduling task type 2");
-        }finally {
+        } finally {
             lock.unlock();
         }
     }
@@ -112,7 +112,7 @@ public class CustomSchedulerService {
         lock.lock();
         try{
             long scheduledTime = System.currentTimeMillis() + unit.toMillis(initialDelay);
-            ScheduledTask task = new ScheduledTask(command, scheduledTime, 3, null, delay, unit);
+            ScheduledTask task = new ScheduledTask(command, scheduledTime, 3, null, delay);
             taskQueue.add(task);
             newTaskAdded.signalAll();
         }catch (Exception e){
@@ -124,7 +124,7 @@ public class CustomSchedulerService {
     }
 
     public static void main(String[] args) {
-        CustomSchedulerService schedulerService = new CustomSchedulerService(10);
+        ConfluentCustomSchedulerService schedulerService = new ConfluentCustomSchedulerService(10);
         Runnable task1 = getRunnableTask("Task1");
         schedulerService.schedule(task1, 1, TimeUnit.SECONDS);
         Runnable task2 = getRunnableTask("Task2");
@@ -154,16 +154,14 @@ class ScheduledTask {
     private Long scheduledTime;
     private final int taskType;
     private final Long period;
-    private final Long delay;
-    private final TimeUnit unit;
+    //private final Long delay;
 
-    public ScheduledTask(Runnable runnable, Long scheduledTime, int taskType, Long period, Long delay, TimeUnit unit) {
+    public ScheduledTask(Runnable runnable, Long scheduledTime, int taskType, Long period, Long delay) {
         this.runnable = runnable;
         this.scheduledTime = scheduledTime;
         this.taskType = taskType;
         this.period = period;
-        this.delay = delay;
-        this.unit = unit;
+        //this.delay = delay;
     }
 
     public Runnable getRunnable() {
@@ -186,11 +184,113 @@ class ScheduledTask {
         return period;
     }
 
-    public Long getDelay() {
-        return delay;
-    }
-
-    public TimeUnit getUnit() {
-        return unit;
-    }
+//    public Long getDelay() {
+//        return delay;
+//    }
 }
+
+
+/*
+ * Click `Run` to execute the snippet below!
+ */
+
+//import java.io.*;
+//        import java.util.*;
+//        import java.util.concurrent.ExecutorService;
+//        import java.util.concurrent.Executors;
+
+/*
+ * To execute Java, please define "static void main" on a class
+ * named Solution.
+ *
+ * If you need more classes, simply define them inline.
+ */
+
+//interface JobScheduler {
+//    void schedule(Runnable job, long delayMs);
+//}
+//
+//class Solution {
+//    public static void main(String[] args) {
+//        // ArrayList<String> strings = new ArrayList<String>();
+//        // strings.add("Hello, World!");
+//        // strings.add("Welcome to CoderPad.");
+//        // strings.add("This pad is running Java " + Runtime.version().feature());
+//
+//        // for (String string : strings) {
+//        //   System.out.println(string);
+//        // }
+//
+//        JobSchedulerImpl jobScheduler = new JobSchedulerImpl();
+//        jobScheduler.run();
+//
+//        jobScheduler.schedule(() -> {
+//            System.out.println(1+2);
+//        }, 20);
+//        jobScheduler.schedule(() -> {
+//            System.out.println(1+2);
+//        }, 20);
+//    }
+//}
+//
+//class JobSchedulerImpl implements JobScheduler {
+//
+//    PriorityQueue<Task> taskQueue;
+//    ExecutorService executor;
+//
+//    JobSchedulerImpl() {
+//        this.taskQueue = new PriorityQueue<>((a,b) -> (a.executionTimeMs.compareTo(b.executionTimeMs)));
+//        this.executor = Executors.newFixedThreadPool(10);
+//    }
+//
+//    public void run() {
+//        while(true) {
+//            synchronized(this) {
+//                while(taskQueue.isEmpty()) {
+//                    try {
+//                        wait();
+//                    } catch (Exception e) {
+//                        //log
+//                    }
+//                }
+//                while(!taskQueue.isEmpty()) {
+//                    long timeToWait = taskQueue.peek().executionTimeMs - System.currentTimeMillis();
+//                    //System.out.println("timeToWait"+timeToWait);
+//                    //System.out.println("currentTime"+System.currentTimeMillis());
+//                    if(timeToWait <= System.currentTimeMillis())
+//                        break;
+//                    try {
+//                        wait(timeToWait);
+//                    } catch (Exception e) {
+//                        //log
+//                    }
+//                }
+//
+//                Task task = taskQueue.poll();
+//                System.out.println("Found task");
+//                executor.submit(task.runnable);
+//            }
+//        }
+//    }
+//
+//    public void schedule(Runnable job, long delayMs) {
+//        Task task = new Task(job, delayMs);
+//        taskQueue.add(task);
+//        //System.out.println("Task added");
+//        synchronized(this) {
+//            notifyAll();
+//        }
+//    }
+//}
+//
+//class Task {
+//    Runnable runnable;
+//    Long executionTimeMs;
+//
+//    public Task(Runnable runnable, Long delayMs) {
+//        this.runnable = runnable;
+//        this.executionTimeMs = System.currentTimeMillis()+delayMs;
+//    }
+//}
+
+// runnable, 20ms

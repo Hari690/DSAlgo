@@ -7,6 +7,10 @@ import java.util.Set;
 
 public class FirstNonRepeatingCharacter {
 
+    /*
+        Here we return the index of first non-repeating character.å
+        If we have to return the character itself the set is not required.
+     */
     public int firstUniqChar(String s) {
         Map<Character, Integer> map = new LinkedHashMap<>();
         Set<Character> set = new HashSet<>();

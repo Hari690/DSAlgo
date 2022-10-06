@@ -31,19 +31,19 @@ public class DecodeWays {
     }
 
     public int numDecodings(String s) {
-       int count1 = 1;
-       int count2 = 1;
-        for(int i=1;i<=s.length();i++) {
-
+        if( s.length()==0 || s.charAt(0)=='0') return 0;
+        if(s.length()==1) return 1;
+        int count1 = 1;
+        int count2 = 1;
+        for(int i=1;i<s.length();i++) {
             //single letter
             int count= (s.charAt(i)=='0')?0:count2;
-
             //double letter
-            if(Integer.parseInt(s.substring(i-2,i))>=10 && Integer.valueOf(s.substring(i-2,i))<=26) {
+            String sub = s.substring(i-1,i+1);
+            if(Integer.parseInt(sub)>=10 && Integer.valueOf(sub)<=26)
                 count+=count1;
-            }
-            count2=count1;
-            count1=count;
+            count1=count2;
+            count2=count;
         }
 
         return count2;

@@ -29,7 +29,7 @@ import java.util.Set;
  * Input: equations = [["a","b"]], values = [0.5], queries = [["a","b"],["b","a"],["a","c"],["x","y"]]
  * Output: [0.50000,2.00000,-1.00000,-1.00000]
  */
-public class EvaluateDivision {
+public class EvaluateEquationDivision {
     class Pair {
         String node;
         double value;
@@ -88,7 +88,7 @@ public class EvaluateDivision {
     }
 
     public static void main(String[] args) {
-        EvaluateDivision evaluateDivision = new EvaluateDivision();
+        EvaluateEquationDivision evaluateDivision = new EvaluateEquationDivision();
         List<List<String>> equations = List.of(List.of("a","b"),List.of("b","c"));
         double[] values = {2.0,3.0};
         List<List<String>> queries = List.of(List.of("a","c"),List.of("b","a"),List.of("a","e"),List.of("a","a"),List.of("x","x"));

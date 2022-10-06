@@ -11,6 +11,9 @@ public class ZigZagTraversal {
 
     }
 
+    /*
+        Normal level order traversal, just that we will add to output in the right order using addFirst or addLast.
+     */
     public List<List<Integer>> zigZagTraversal(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) {
