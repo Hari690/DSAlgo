@@ -23,6 +23,8 @@ public class MaxLengthRepeatedSubarray {
 
     // Difference between this way and subsequence is here we use param to incrmement and unset count if there is a match
     // and use same variable to set max count for a call.
+
+    // Just increment dp based on diagonal.
     public int findLength(int[] A, int[] B) {
         if(A == null||B == null) return 0;
         int m = A.length;

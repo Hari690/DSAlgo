@@ -1,7 +1,6 @@
 package graphs;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -30,10 +29,10 @@ public class NetworkDelayTimeDijkstras {
             this.wt = wt;
         }
     }
-    public class pair{
+    public class Pair {
         int v;
         int dist;
-        pair(int v, int dist){
+        Pair(int v, int dist){
             this.v = v;
             this.dist = dist;
         }
@@ -46,19 +45,19 @@ public class NetworkDelayTimeDijkstras {
             graph[times[i][0]].add(newE);
         }
 
-        pair src = new pair(K,0);
-        PriorityQueue<pair> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.dist));
+        Pair src = new Pair(K,0);
+        PriorityQueue<Pair> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.dist));
         pq.add(src);
         Set<Integer> visited = new HashSet<>();
         int time = 0;
         while(pq.size()!=0){
-            pair rvtx = pq.remove();
+            Pair rvtx = pq.remove();
             if(visited.contains(rvtx.v))
                 continue;
             visited.add(rvtx.v);
             time = Math.max(time, rvtx.dist);
             for(Edge e : graph[rvtx.v]){
-                pair tmp = new pair(e.dst, e.wt + rvtx.dist);
+                Pair tmp = new Pair(e.dst, e.wt + rvtx.dist);
                 if(visited.contains(tmp.v))
                     continue;
                 pq.add(tmp);

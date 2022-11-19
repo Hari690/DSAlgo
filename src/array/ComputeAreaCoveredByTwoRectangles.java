@@ -5,7 +5,7 @@ package array;
  * The first rectangle is defined by its bottom-left corner (ax1, ay1) and its top-right corner (ax2, ay2).
  * The second rectangle is defined by its bottom-left corner (bx1, by1) and its top-right corner (bx2, by2).
  */
-public class ComputeAreaRectangle {
+public class ComputeAreaCoveredByTwoRectangles {
     public int computeArea(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
         int dax = ax2-ax1;
         int day = ay2-ay1;

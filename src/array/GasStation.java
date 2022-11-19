@@ -15,7 +15,7 @@ package array;
 public class GasStation {
 
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        //determine if we have a solution
+        // determine if we have a solution
         // Idea is based on if there's more total gas than total cost then there's definitely a solution and we just
         // need to find where it starts.
         int total = 0;

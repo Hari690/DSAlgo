@@ -32,9 +32,6 @@ package dynamicprogramming;
  */
 public class MaxScoreFromMultiplicationOperations {
 
-    /*
-        Since the sub-problems calculate optimal value when we build final solution it will be optimized.
-     */
     public int maximumScore(int[] nums, int[] multipliers) {
         int[][] dp = new int[nums.length+1][nums.length+1];
         return findMax(nums, multipliers, 0, nums.length-1,0, dp);

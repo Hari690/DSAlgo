@@ -33,4 +33,23 @@ public class Palindrome {
         }
         return true;
     }
+
+    /*
+        Reverse the number and compare.
+     */
+    public boolean isPalindromeNumber(int x) {
+        if(x<0 || (x!=0 && x%10==0))
+            return false;
+        int res = 0;
+        while(x>res){
+            res = res*10 + x%10;
+            x = x/10;
+        }
+        /*
+        x == res / 10 is for odd number of digits. Suppose number is 45654, now it will come out of loop when x < res i.e. x = 45 and res = 456,
+        so to truncate the 6 of res, we use x = res / 10. But this is not the case of even digits. Suppose number is 456654, it will come out of loop when x == res
+        i.e. x = 456 and res = 456, so no need to truncate & we can use x == res directly for it.
+         */
+        return (x==res || x==res/10);
+    }
 }

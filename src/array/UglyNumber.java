@@ -9,17 +9,18 @@ import java.util.List;
  * Given an integer n, return true if n is an ugly number.
  */
 public class UglyNumber {
-    public boolean isUgly(int n) {
-        if(n<=0)
-            return false;
-
-        List<Integer> factors = Arrays.asList(2,3,5);
-
-        for(int factor: factors) {
-            while(n%factor==0)
-                n/=factor;
+    public boolean isUgly(int num) {
+        if (num <= 0) {return false;}
+        if (num == 1) {return true;}
+        if (num % 2 == 0) {
+            return isUgly(num/2);
         }
-
-        return n==1;
+        if (num % 3 == 0) {
+            return isUgly(num/3);
+        }
+        if (num % 5 == 0) {
+            return isUgly(num/5);
+        }
+        return false;
     }
 }

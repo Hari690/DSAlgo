@@ -5,7 +5,11 @@ import java.util.List;
 
 /**
  * /**
- * At Twitter, we want to drive healthy, valuable conversation. The first part of addressing this challenge is coming up with a way to determine how interactive/engaging a conversation is. If an audience is consistently engaged in a conversation, then the likelihood that it is valuable is much higher. Therefore, we want to figure out how many times a user is engaged in a given conversation. If we represent a conversation as an N-ary tree, then we can define an "engagement" as a user replying to one or more responses from separate users to a Tweet they've made. Given the root node to a conversation tree, determine how many times the author is engaged in the entire conversation.
+ * At Twitter, we want to drive healthy, valuable conversation. The first part of addressing this challenge is coming up with a way to determine how interactive/engaging a conversation is.
+ * If an audience is consistently engaged in a conversation,
+ * then the likelihood that it is valuable is much higher. Therefore, we want to figure out how many times a user is engaged in a given conversation.
+ * If we represent a conversation as an N-ary tree, then we can define an "engagement" as a user replying to one or more responses from separate users to a Tweet they've made.
+ * Given the root node to a conversation tree, determine how many times the author is engaged in the entire conversation.
  * A's tweet
  * B replied (Conversation 1)
  * C replies to B's previous reply

@@ -28,7 +28,7 @@ import java.util.Map;
  * There will be at least one customer that has traveled from startStation to endStation before getAverageTime is called.
  * You may assume all calls to the checkIn and checkOut methods are consistent. If a customer checks in at time t1 then checks out at time t2, then t1 < t2. All events happen in chronological order.
  */
-class UndergroundSystem {
+class UndergroundTrainSystem {
     class Pair {
         String key;
         Integer value;
@@ -39,7 +39,7 @@ class UndergroundSystem {
     }
     private Map<Integer, Pair> start;
     private Map<String, List<Integer>> trips;
-    public UndergroundSystem() {
+    public UndergroundTrainSystem() {
         start = new HashMap<>();
         trips = new HashMap<>();
     }

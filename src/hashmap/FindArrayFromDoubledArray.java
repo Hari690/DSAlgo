@@ -1,4 +1,4 @@
-package treemap;
+package hashmap;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -36,6 +36,7 @@ public class FindArrayFromDoubledArray {
 
         int i=0;
         int[] result = new int[changed.length/2];
+        // check from beginning if no and double exists. If so mark it.
         Arrays.sort(changed);
         for (int no : changed){
             if(map.containsKey(no) && map.get(no)>0 && map.containsKey(no*2) && map.get(no*2)>0) {

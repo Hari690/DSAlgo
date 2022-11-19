@@ -28,10 +28,10 @@ public class ContinuousSubarraySumMultipleK {
                 if(i-prev>1)
                     return true;
             }
-            else
+            else {
                 // maintain last index where sum was found.
                 map.put(sum, i);
-
+            }
         }
         return false;
     }

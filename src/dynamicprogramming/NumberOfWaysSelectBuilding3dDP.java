@@ -32,6 +32,7 @@ import java.util.Arrays;
  */
 public class NumberOfWaysSelectBuilding3dDP {
     public long numberOfWays(String s) {
+        // prev can only be -1, 0, 1.
         long[][][] dp = new long[s.length()+1][4][3];
         for(int i=0;i<s.length()+1;i++)
             for(int j=0;j<4;j++)

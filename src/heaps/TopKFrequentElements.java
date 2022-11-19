@@ -1,6 +1,8 @@
 package heaps;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -32,6 +34,34 @@ public class TopKFrequentElements {
 
         for(int i = 0; i < k; ++i)
             result[i] = PQ.poll();
+        return result;
+    }
+
+    public List<String> topKFrequentWords(String[] words, int k) {
+        List<String> result = new LinkedList<>();
+        Map<String, Integer> map = new HashMap<>();
+        for(int i=0; i<words.length; i++)
+        {
+            if(map.containsKey(words[i]))
+                map.put(words[i], map.get(words[i])+1);
+            else
+                map.put(words[i], 1);
+        }
+
+        PriorityQueue<Map.Entry<String, Integer>> minHeap = new PriorityQueue<>(
+                (a,b) -> a.getValue()==b.getValue() ? b.getKey().compareTo(a.getKey()) : a.getValue()-b.getValue()
+        );
+
+        for(Map.Entry<String, Integer> entry: map.entrySet())
+        {
+            minHeap.offer(entry);
+            if(minHeap.size()>k)
+                minHeap.poll();
+        }
+
+        while(!minHeap.isEmpty())
+            result.add(0, minHeap.poll().getKey());
+
         return result;
     }
 }

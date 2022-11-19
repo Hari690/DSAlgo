@@ -1,6 +1,5 @@
 package queue;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -31,7 +30,7 @@ import java.util.PriorityQueue;
  * We made 2 refueling stops along the way, so we return 2.
  *
  */
-public class MinimumNoRefuelingStops {
+public class DrivingMinimumNoRefuelingStops {
 
     /*
         Do BFS with greedy by taking max at each level and checking which pumps fall in that range until we reach target.

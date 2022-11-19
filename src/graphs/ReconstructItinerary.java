@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * You are given a list of airline tickets where tickets[i] = [fromi, toi] represent the departure and the arrival airports of one flight
@@ -62,6 +63,34 @@ public class ReconstructItinerary {
             }
         }
         return false;
+    }
+
+
+    private static final String INITIAL_AIRPORT = "JFK";
+
+    public List<String> findItineraryTopSort(List<List<String>> tickets) {
+        if (tickets == null || tickets.size() == 0)
+            return new ArrayList<>();
+        Map<String, PriorityQueue<String>> graph = new HashMap<>();
+        for (List<String> ticket : tickets) {
+            graph.putIfAbsent(ticket.get(0), new PriorityQueue<>(String::compareTo));
+            graph.get(ticket.get(0)).add(ticket.get(1));
+        }
+
+        LinkedList<String> result = new LinkedList<>();
+        topologicalSort(INITIAL_AIRPORT, graph, result);
+
+        return result;
+    }
+
+    private void topologicalSort(String vertex, Map<String, PriorityQueue<String>> graph, LinkedList<String> result) {
+        PriorityQueue<String> queue = graph.get(vertex);
+        while (queue != null && !queue.isEmpty()) {
+            String adj = queue.poll();
+            topologicalSort(adj, graph, result);
+
+        }
+        result.addFirst(vertex);
     }
 
     public static void main(String[] args) {

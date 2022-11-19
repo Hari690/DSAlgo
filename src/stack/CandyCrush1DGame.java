@@ -40,6 +40,7 @@ public class CandyCrush1DGame {
                 }
             } else {
                 // if top char in stack is same then for continuous popping we keep incrementing occurence until we can pop together.
+                // This is so when a different char comes we can pop the stacks together.
                 int count = occurence.pop();
                 occurence.push(count + 1);
                 i++;

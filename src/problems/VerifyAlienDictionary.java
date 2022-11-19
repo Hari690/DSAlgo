@@ -36,6 +36,9 @@ public class VerifyAlienDictionary {
         while ((i+1) < words.length) {
             int j=0;
             while(j<words[i].length() && j<words[i+1].length()) {
+
+                // if not all characters in the order map we do a null check.
+
                 if ( orderMap.get(words[i].charAt(j)) < orderMap.get(words[i+1].charAt(j))) {
                     break;
                 } else if ( orderMap.get(words[i].charAt(j)) == orderMap.get(words[i+1].charAt(j))) {

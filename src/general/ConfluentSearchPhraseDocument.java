@@ -83,6 +83,6 @@ public class ConfluentSearchPhraseDocument {
         Pair<Integer,String> pair2 = new Pair<>(2, "One integrated service for metrics uptime cloud monitoring dashboards and alerts reduces time spent navigating between systems.");
         Pair<Integer,String> pair3 = new Pair<>(3, "Monitor entire cloud infrastructure, whether in the cloud computing is or in virtualized data centers.");
         List<Pair<Integer,String>> list = List.of(pair1, pair2, pair3);
-        searchPhraseDocument.search(list, "cloud");
+        System.out.println(searchPhraseDocument.search(list, "cloud"));
     }
 }

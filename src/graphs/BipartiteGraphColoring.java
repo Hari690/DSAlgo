@@ -1,7 +1,8 @@
 package graphs;
 
 /**
- * There is an undirected graph with n nodes, where each node is numbered between 0 and n - 1. You are given a 2D array graph, where graph[u] is an array of nodes that node u is adjacent to. More formally, for each v in graph[u], there is an undirected edge between node u and node v. The graph has the following properties:
+ * There is an undirected graph with n nodes, where each node is numbered between 0 and n - 1. You are given a 2D array graph, where graph[u] is an array of nodes that node u is adjacent to.
+ * More formally, for each v in graph[u], there is an undirected edge between node u and node v. The graph has the following properties:
  * There are no self-edges (graph[u] does not contain u).
  * There are no parallel edges (graph[u] does not contain duplicate values).
  * If v is in graph[u], then u is in graph[v] (the graph is undirected).
@@ -10,7 +11,7 @@ package graphs;
  *
  * Return true if and only if it is bipartite.
  */
-public class BipartiteGraph {
+public class BipartiteGraphColoring {
     /*
         Idea is to always start coloring an uncolored node with one color and then use dfs to color
         adjacent nodes in different color. If it's already colored in different color
@@ -43,7 +44,7 @@ public class BipartiteGraph {
     }
 
     public static void main(String[] args) {
-        BipartiteGraph bipartiteGraph = new BipartiteGraph();
+        BipartiteGraphColoring bipartiteGraph = new BipartiteGraphColoring();
         int[][] graph = {{1,3},{0,2},{1,3},{0,2}};
         bipartiteGraph.isBipartite(graph);
     }

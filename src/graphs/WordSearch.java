@@ -62,13 +62,12 @@ public class WordSearch {
 
 
         visited[row][col] = true;
-        boolean exists1 = exist(board,word,row,col+1, visited, index+1);
-        boolean exists2 = exist(board,word,row,col-1,visited, index+1);
-        boolean exists3 = exist(board,word,row+1,col,visited, index+1);
-        boolean exists4 = exist(board,word,row-1,col,visited, index+1);
-        if(exists1 || exists2 || exists3 || exists4) {
+        if(exist(board,word,row,col+1, visited, index+1) ||
+                exist(board,word,row,col-1,visited, index+1) ||
+                exist(board,word,row+1,col,visited, index+1) ||
+                exist(board,word,row-1,col,visited, index+1))
             return true;
-        }
+
         visited[row][col] = false;
         return false;
     }

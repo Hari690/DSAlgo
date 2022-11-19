@@ -1,7 +1,5 @@
 package problems;
 
-import java.util.TreeSet;
-
 public class ShortestDistanceToCharacter {
     public int[] shortestToChar(String S, char C    ) {
         int n = S.length(), pos = -n, res[] = new int[n];
