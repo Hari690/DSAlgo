@@ -13,6 +13,7 @@ import java.util.List;
  * Note: The solution set must not contain duplicate combinations.
  *
  * Input: candidates = [10,1,2,7,6,1,5], target = 8
+ * sorted: [1,1,2,5,6,7,10]
  * Output:
  * [
  * [1,1,6],
@@ -30,6 +31,9 @@ public class CombinationSum2 {
         return res;
     }
 
+    /*
+        Another option is to use visited array with set
+     */
     void dfs_com(int[] cand, int cur, int target, List<Integer> path, List<List<Integer>> res) {
         if (target == 0) {
             res.add(new ArrayList(path));
@@ -38,7 +42,9 @@ public class CombinationSum2 {
         if (target < 0) return;
         for (int i = cur; i < cand.length; i++){
             // At the same level of recursion i.e when cur is different from i we need to skip if
-            // current element is same as previous element.
+            // current element is same as previous element. In the example provided we keep a 1 and then we skip
+            // all 1's for the branch without 1.
+            // i.e the for loop will pick only one of a no and initiate recursion and that recursion will take care of duplicates.
             if (i > cur && cand[i] == cand[i-1]) continue;
             path.add(path.size(), cand[i]);
             dfs_com(cand, i+1, target - cand[i], path, res);

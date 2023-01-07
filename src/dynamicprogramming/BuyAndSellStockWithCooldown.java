@@ -1,5 +1,6 @@
 package dynamicprogramming;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,29 +27,29 @@ public class BuyAndSellStockWithCooldown {
         return Math.max(A, C);
     }
 
-    public int maxprofitDp(int[] prices) {
-        Map<String,Integer> cache = new HashMap<>();
-        return maxprofit(prices, 0 , true, cache);
+    public int maxProfitDp(int[] prices) {
+        int[][] dp = new int[prices.length][2];
+        for(int arr[]: dp)
+            Arrays.fill(arr, -1);
+        return findMax(prices, 0, true, dp);
     }
 
-    private int maxprofit(int[] prices, int index, boolean buying, Map<String,Integer> cache) {
-        if(index>=prices.length) {
+    private int findMax(int[] profit, int index, boolean buying, int[][] dp) {
+        if(index>=profit.length)
             return 0;
-        }
-        if(cache.containsKey(index +String.valueOf(buying)))
-            return cache.get(index +String.valueOf(buying));
+
+        if(dp[index][buying?1:0]!=-1)
+            return dp[index][buying?1:0];
+
         if(buying) {
-            // can only buy or cooldown(do nothing).
-            int buy = maxprofit(prices, index+1, !buying, cache)-prices[index];
-            int cooldown = maxprofit(prices, index+1, buying, cache);
-            cache.put(index +String.valueOf(buying),Math.max(buy, cooldown));
-            return cache.get(index +String.valueOf(buying));
+            int result = Math.max(-profit[index]+findMax(profit,index+1,!buying, dp),
+                    findMax(profit,index+1,buying, dp));
+            dp[index][buying?1:0] = result;
         } else {
-            // can sell with mandatory cooldown or stay in cooldown.
-            int sell = maxprofit(prices, index+2, !buying, cache)+prices[index];
-            int cooldown = maxprofit(prices, index+1, buying, cache);
-            cache.put(index +String.valueOf(buying),Math.max(sell, cooldown));
-            return cache.get(index +String.valueOf(buying));
+            int result = Math.max(profit[index]+findMax(profit,index+2,!buying, dp),
+                    findMax(profit,index+1,buying, dp));
+            dp[index][buying?1:0] = result;
         }
+        return dp[index][buying?1:0];
     }
 }

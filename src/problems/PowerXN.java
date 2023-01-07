@@ -17,6 +17,10 @@ package problems;
  * Explanation: 2-2 = 1/22 = 1/4 = 0.25
  */
 public class PowerXN {
+
+    /*
+        This has log(n) complexity compared to regular approach.
+     */
     public double myPow(double x, int n) {
         if(x==0)
             return 0.0;
@@ -24,6 +28,7 @@ public class PowerXN {
             return 1;
         if(n==1)
             return x;
+        // can have decimal also
         double ans = myPow(x, Math.abs(n/2));
         // check positive or negative
         double result=(n>=0)?ans*ans:1/(ans*ans);

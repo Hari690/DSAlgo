@@ -1,11 +1,17 @@
 package backtracking;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Given an integer array nums and an integer k,
  * return true if it is possible to divide this array into k non-empty subsets whose sums are all equal.
+ * Example 1:
+ * Input: nums = [1,5,11,5]
+ * Output: true
+ * Explanation: The array can be partitioned as [1, 5, 5] and [11].
+ * Example 2:
+ *
+ * Input: nums = [1,2,3,5]
+ * Output: false
+ * Explanation: The array cannot be partitioned into equal sum subsets.
  */
 public class PartitionKEqualSumSubsets {
     public boolean canPartitionKSubsets(int[] nums, int k) {
@@ -22,6 +28,7 @@ public class PartitionKEqualSumSubsets {
     public boolean dfs(int[] nums,int sum, int k, boolean[] visited, int val, int total, int index) {
         if(sum==val) {
             total++;
+            // by reusing visited set and resetting index we can check all sets are filled.
             return dfs(nums,0,k,visited,val, total, 0);
         }
         if(total==k) {

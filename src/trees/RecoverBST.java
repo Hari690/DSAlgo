@@ -8,7 +8,6 @@ class RecoverBST {
     private TreeNode first = null;
     private TreeNode second = null;
     private TreeNode prev=null;
-
     /*
         The first element is always larger than its next one while the
         second element is always smaller than its previous one.

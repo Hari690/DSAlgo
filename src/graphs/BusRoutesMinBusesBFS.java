@@ -30,7 +30,10 @@ public class BusRoutesMinBusesBFS {
 
 		Bus Stop(Integer) -> Bus Number(ArrayList<Integer>), and this relation means that on a bus stop, which Buses can we expect
 
-        All this is done because the cost of reaching all the bus stops for a given bus number is same irrespective intermediate nodes hopped */
+        All this is done because the cost of reaching all the bus stops for a given bus number is same irrespective intermediate nodes hopped
+
+        It shoudl be similar to that of a regular BFS. Basically, we are visiting each bus-route once and in doing so, we are also visiting each bus
+        stop for a given route. So, it should be O(V+E), where V is the total number of bus routes and E is the total number of bus stops.*/
 
         HashMap<Integer, ArrayList<Integer>> map = new HashMap();
 
@@ -46,15 +49,11 @@ public class BusRoutesMinBusesBFS {
 
         //we need a queue for BFS
         LinkedList<Integer> queue = new LinkedList<>();
-
         //we need a hashSet to keep track of Bus Stops visited
         HashSet<Integer> busStopVisited = new HashSet<>();
-
         //basically store the bus number to keep track of all bus stops visited for a Bus Number..kinda bundle up the work of busStopVisited(hashSet made just above) and reduce time complexity of rechecking all bus stops for a given Bus.
         HashSet<Integer> busVisited = new HashSet<>();
-
         int cost = 0;
-
         //add source to the queue and make it visited
         queue.addLast(source);
         busStopVisited.add(source);
@@ -77,7 +76,9 @@ public class BusRoutesMinBusesBFS {
                     if(busVisited.contains(bus)==true){
                         continue;
                     }
-                    //new bus found->  now catch this bus and see where can you reach from this bus with a hope that this bus helps us get to our target bus stop when in the next BFS iteration we remove the busStops of this bus and test the condition if(rem == target) return cost;
+                    //new bus found->  now catch this bus and see where can you reach from this bus with a hope that this bus helps us get to
+                    // our target bus stop when in the next
+                    // BFS iteration we remove the busStops of this bus and test the condition if(rem == target) return cost;
                     int[] arr = routes[bus];
                     for(int busStop: arr){
                         if(busStopVisited.contains(busStop)==true){

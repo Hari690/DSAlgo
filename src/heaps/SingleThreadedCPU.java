@@ -22,6 +22,8 @@ public class SingleThreadedCPU {
     public int[] getOrder(int[][] tasks) {
 
         int n = tasks.length;
+
+        // for preserving indexes after adding to heap
         int[][] tasksWithIndex = new int[tasks.length][3];
         int i = 0;
         for(int[] task: tasks) {
@@ -42,6 +44,7 @@ public class SingleThreadedCPU {
         int j = 0;
         int time = tasksWithIndex[j][0];
         while(i<n) {
+            // add all tasks that are available
             while(j<n && tasksWithIndex[j][0]<=time) {
                 minHeap.offer(tasksWithIndex[j++]);
             }

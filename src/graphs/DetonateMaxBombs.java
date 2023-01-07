@@ -8,6 +8,18 @@ package graphs;
  * You may choose to detonate a single bomb. When a bomb is detonated,
  * it will detonate all bombs that lie in its range. These bombs will further detonate the bombs that lie in their ranges.
  * Given the list of bombs, return the maximum number of bombs that can be detonated if you are allowed to detonate only one bomb.
+ * Input: bombs = [[2,1,3],[6,1,4]]
+ * Output: 2
+ * Explanation:
+ * The above figure shows the positions and ranges of the 2 bombs.
+ * If we detonate the left bomb, the right bomb will not be affected.
+ * But if we detonate the right bomb, both bombs will be detonated.
+ * So the maximum bombs that can be detonated is max(1, 2) = 2.
+ *
+ * Input: bombs = [[1,1,5],[10,10,5]]
+ * Output: 1
+ * Explanation:
+ * Detonating either bomb will not detonate the other bomb, so the maximum number of bombs that can be detonated is 1.
  */
 public class DetonateMaxBombs {
     int count = 0; // global variable, otherwise use an array

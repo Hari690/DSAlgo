@@ -23,6 +23,36 @@ public class SortColors {
 
     public void sortColors(int[] nums) {
 
+        // 2-pass
+//        int count0 = 0, count1 = 0, count2 = 0;
+//        for (int i = 0; i < nums.length; i++) {
+//            if (nums[i] == 0) {count0++;}
+//            if (nums[i] == 1) {count1++;}
+//            if (nums[i] == 2) {count2++;}
+//        }
+//        for(int i = 0; i < nums.length; i++) {
+//            if (i < count0) {nums[i] = 0;}
+//            else if (i < count0 + count1) {nums[i] = 1;}
+//            else {nums[i] = 2;}
+//        }
+
+        // 1-pass
+//        int n0 = -1, n1 = -1, n2 = -1;
+//        for (int i = 0; i < n; ++i) {
+//            if (A[i] == 0)
+//            {
+//                A[++n2] = 2; A[++n1] = 1; A[++n0] = 0;
+//            }
+//            else if (A[i] == 1)
+//            {
+//                A[++n2] = 2; A[++n1] = 1;
+//            }
+//            else if (A[i] == 2)
+//            {
+//                A[++n2] = 2;
+//            }
+//        }
+
         int p1 = 0, p2 = nums.length - 1, index = 0;
         while (index <= p2) {
             if (nums[index] == 0) {
@@ -38,6 +68,5 @@ public class SortColors {
             }
             index++;
         }
-
     }
 }

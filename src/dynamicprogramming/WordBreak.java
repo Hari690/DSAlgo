@@ -21,6 +21,10 @@ import java.util.Set;
  * Explanation: Return true because "leetcode" can be segmented as "leet code".
  */
 public class WordBreak {
+
+    /*
+        Another option is to iterate using words of dictionary.
+     */
     public boolean wordBreakBruteForce(String s, List<String> wordDict) {
         // put all words into a hashset
         Set<String> set = new HashSet<>(wordDict);

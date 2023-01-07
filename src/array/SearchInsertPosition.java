@@ -19,10 +19,8 @@ public class SearchInsertPosition {
             int m = l+(r-l)/2;
             if(target>nums[m]){
                 l=m+1;
-            }else if(target<nums[m]){
+            }else if(target<=nums[m]){
                 r=m-1;
-            } else {
-                return m;
             }
         }
 

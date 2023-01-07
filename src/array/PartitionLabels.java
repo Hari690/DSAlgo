@@ -20,6 +20,7 @@ public class PartitionLabels {
         List<Integer> result = new ArrayList();
         int start = 0, end = 0;
         for (int i = 0; i < S.length(); ++i) {
+            // max is because we need to account for other characters in the segment which can end at the end of segment
             end = Math.max(end, end_idx[S.charAt(i) - 'a']);
             if (i == end) { // all the characters of current partition included
                 result.add(i - start + 1);

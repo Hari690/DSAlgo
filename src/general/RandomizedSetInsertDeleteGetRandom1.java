@@ -34,8 +34,7 @@ public class RandomizedSetInsertDeleteGetRandom1 {
 
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
-        boolean contain = locs.containsKey(val);
-        if (contain) {
+        if (locs.containsKey(val)) {
             return false;
         }
         locs.put(val, nums.size());

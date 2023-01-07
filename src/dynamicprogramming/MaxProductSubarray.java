@@ -22,6 +22,7 @@ public class MaxProductSubarray {
         for(int i=1; i<nums.length; i++) {
             //take max until now
             int tmp = max;
+            // -1,8 so we need to check num[i]
             max = Math.max(nums[i], Math.max(max*nums[i], min*nums[i]));
             min = Math.min(nums[i], Math.min(min*nums[i], tmp*nums[i]));
             totalMax = Math.max(max, totalMax);

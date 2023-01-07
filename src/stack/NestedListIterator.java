@@ -71,6 +71,7 @@ public class NestedListIterator implements Iterator<Integer> {
     }
 
     private void prepareStack(List<NestedInteger> nestedList) {
+        // complexity can depend on list passed in
         for (int i = nestedList.size() - 1; i >= 0; i--) {
             stack.push(nestedList.get(i));
         }

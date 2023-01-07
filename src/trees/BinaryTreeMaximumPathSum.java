@@ -20,8 +20,11 @@ public class BinaryTreeMaximumPathSum {
         if(root==null) {
             return 0;
         }
+        // in case there are negative values in the children don't pass their value upwards.
         int left = Math.max(0,findMaxPathSum(root.left));
         int right = Math.max(0,findMaxPathSum(root.right));
+        // for the node itself we can calculate the value plus left plus right as it does not involve any split
+        // but only pass the higher value upwards as it's representative of no splitting
         maxSum = Math.max(maxSum,left+right+root.val);
         // Prune the part of tree that's shorter and pass only larger value as it's max path parent to child.
         return Math.max(left,right)+root.val;

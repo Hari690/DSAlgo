@@ -14,7 +14,7 @@ public class ThreadsafeCache {
     private String getItem(String key) {
         cache.computeIfAbsent(key, (k) -> {
             CompletableFuture completableFuture = new CompletableFuture();
-            String value = getFromDB(key);
+            String value = getFromDB(k);
             completableFuture.complete(value);
             return completableFuture;
         });

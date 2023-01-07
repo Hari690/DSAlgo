@@ -34,6 +34,7 @@ public class GasStation {
         for (int i = 0; i < gas.length;i++) {
             tank += gas[i] - cost[i];
             if (tank < 0) {
+                // since this is a candidate we reset tank also as we want to simulate starting from here.
                 start = i + 1;
                 tank = 0;
             }

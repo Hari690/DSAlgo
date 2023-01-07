@@ -26,11 +26,13 @@ public class JumpGame {
         new JumpGame().canJump(nums);
     }
 
-    boolean canJump(int A[]) {
-        int last=A.length-1,i;
-        for(i=A.length-1;i>=0;i--){
-            if(i+A[i]>=last)last=i;
+    boolean canJump(int nums[]) {
+        int jump=1;
+        for(int i=0;i<nums.length;i++) {
+            jump=Math.max(jump-1,nums[i]);
+            if(jump==0 && i!=nums.length-1)
+                return false;
         }
-        return last==0;
+        return true;
     }
 }

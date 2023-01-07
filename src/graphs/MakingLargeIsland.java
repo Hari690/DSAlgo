@@ -28,8 +28,8 @@ import java.util.Set;
 public class MakingLargeIsland {
 
     /*
-        Intuition - Mark different islands with different colour.
-        Keep checking for 0's and count contribution of different islands surrounding it.
+        Intuition - Mark different islands with different colour and maintain size in hashmap.
+        Keep flipping 0's and count contribution of different islands surrounding it and find max.
      */
     int[][] diffs = {{1,0},{0,1},{-1,0},{0,-1}};
     public int largestIslandBruteForce(int[][] grid) {
