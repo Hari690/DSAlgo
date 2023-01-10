@@ -20,6 +20,9 @@ public class HouseRobber3MaxWithoutConsecutiveFromTree {
         return Math.max(result[0],result[1]);
     }
 
+    /*
+        Make two choices bottom up
+     */
     private int[] dfs(TreeNode root) {
         if(root==null)
             return new int[]{0,0};
