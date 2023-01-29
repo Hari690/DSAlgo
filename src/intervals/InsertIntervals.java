@@ -22,6 +22,10 @@ import java.util.List;
  */
 public class InsertIntervals {
     public int[][] insert(int[][] intervals, int[] newInterval) {
+        /*
+            Do merging only when we encounter the newInterval after sorting.
+            Other option is to create new array with newInterval and merge everything together but that's O(nlogn) and O(n) space.
+         */
         Arrays.sort(intervals, Comparator.comparingInt(interval -> interval[0]));
 
         int i=0;

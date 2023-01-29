@@ -1,38 +1,38 @@
 package trie;
 
 class WordDictionary {
-    private WordDictionary[] children;
-    boolean isEndOfWord;
-    /** Initialize your data structure here. */
+    private WordDictionary[] child;
+    boolean end;
+
     public WordDictionary() {
-        children = new WordDictionary[26];
-        isEndOfWord = false;
+        this.child = new WordDictionary[26];
+        this.end = false;
     }
 
-    /** Adds a word into the data structure. */
     public void addWord(String word) {
-        WordDictionary curr = this;
-        for(char c: word.toCharArray()){
-            if(curr.children[c - 'a'] == null)
-                curr.children[c - 'a'] = new WordDictionary();
-            curr = curr.children[c - 'a'];
+        WordDictionary temp = this;
+        for(char c : word.toCharArray()) {
+            if(temp.child[c-'a']==null)
+                temp.child[c-'a']=new WordDictionary();
+            temp = temp.child[c-'a'];
         }
-        curr.isEndOfWord = true;
+        temp.end = true;
     }
 
-    /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     public boolean search(String word) {
-        WordDictionary curr = this;
-        for(int i = 0; i < word.length(); ++i){
+        WordDictionary temp = this;
+        for(int i=0;i<word.length();i++) {
             char c = word.charAt(i);
-            if(c == '.'){
-                for(WordDictionary ch: curr.children)
-                    if(ch != null && ch.search(word.substring(i+1))) return true;
+            if(c=='.') {
+                for(WordDictionary ch : temp.child)
+                    if(ch!=null && ch.search(word.substring(i+1)))
+                        return true;
                 return false;
             }
-            if(curr.children[c - 'a'] == null) return false;
-            curr = curr.children[c - 'a'];
+            temp = temp.child[c-'a'];
+            if(temp==null)
+                return false;
         }
-        return curr != null && curr.isEndOfWord;
+        return temp.end==true;
     }
 }

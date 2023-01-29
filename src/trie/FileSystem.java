@@ -20,6 +20,7 @@ import java.util.List;
  * return type.
  *
  * readContentFromFile: Given a file path, return its content in string format.
+ *
  */
 public class FileSystem {
     class File {
@@ -33,6 +34,9 @@ public class FileSystem {
         root = new File();
     }
 
+    /*
+     * caching and adding to key value store for each node could be an optimization.
+     */
     public List<String> ls(String path) {
         File t = root;
         List<String> files = new ArrayList<>();

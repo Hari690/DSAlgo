@@ -12,15 +12,17 @@ package array;
  */
 public class TownJudge {
     public int findJudge(int N, int[][] trust) {
-        if(trust.length == 0) return N == 1 ? 1 : -1;
-        int[] trustCount = new int[N+1];
-        for(int[] t : trust){
-            trustCount[t[1]]++;
-            trustCount[t[0]]--;
+        int[] votes = new int[N+1];  // Total votes each person gets. The person is represented by the index. I used N+1 to make it easier deal with array manipulation.
+        int[] voted = new int[N+1]; // Total votes each person gives to others.
+
+        for(int i=0;i<trust.length;i++){
+            votes[trust[i][1]]++; // Adding all votes a person gets from others.
+            voted[trust[i][0]]++; // Adding all votes a person gives to others.
         }
-        for(int i = 1; i < trustCount.length;i++){
-            if(trustCount[i] == N-1)
+        for(int i = 1;i<=N;i++){
+            if(votes[i]==N-1 && voted[i]==0){  // A judge gets all votes except his own i.e N - 1. A judge gives 0 votes to others.
                 return i;
+            }
         }
         return -1;
     }

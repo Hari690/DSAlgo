@@ -13,8 +13,13 @@ import java.util.Set;
  * A concatenated word is defined as a string that is comprised entirely of at least two shorter words in the given array.
  */
 public class ConcatWords {
-    private static  Map<String,Boolean> check = new HashMap<>();
-    public static List<String> findAllConcatenatedWordsInADict(String[] words) {
+    private Map<String,Boolean> check = new HashMap<>();
+
+    /*
+        Two options are keep adding words to for the output or keep splitting words and checking First option we need to find longest string to terminate recursion
+        so better to do second approach.
+     */
+    public List<String> findAllConcatenatedWordsInADict(String[] words) {
         List<String> output = new ArrayList<>();
         Set<String> set = new HashSet<>();
         for( String word : words) {
@@ -28,7 +33,7 @@ public class ConcatWords {
         return output;
     }
 
-    private static boolean check(Set<String> set, String word) {
+    private boolean check(Set<String> set, String word) {
         if(check.containsKey(word))
             return check.get(word);
 

@@ -20,15 +20,16 @@ import java.util.LinkedList;
  * Output: "acdb"
  */
 public class RemoveDuplicatesLexicoOrderMonotonicStack {
-
     /*
+        For lexicographically sorted the smallest order needs to be found eg : abc so if we have repetitions of a character then we need
+        to wait until a later occurrence to add it to the output if it can influence the lexical order.
+        We use a stack to check the ongoing lexical order.
         For lexicographically sorted and removing duplicates, we need to check if a given character is the last occurence of that character
         in case a lower character has not been inserted after it so we delete all previous instances so we keep and adding and deleting from a stack.
 
         Use stack to maintain order and comparison between values.
-        If what stack contains is not last occurence of a character and higher value than current pop it off
-        and push current.
-        Also maintain a visited to ensure we don't push same element twice which is one of the contraints.
+        If what stack contains is not last occurence of a character and higher value than current pop it off and push current.
+        Also maintain a visited to ensure we don't push same element twice which is one of the constraints.
         Point to note, we insert the int value of char which can be used as index.
      */
     public String removeDuplicateLetters(String s) {

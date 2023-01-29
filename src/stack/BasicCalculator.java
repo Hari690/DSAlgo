@@ -21,7 +21,7 @@ import java.util.Stack;
 public class BasicCalculator {
     public static int calculate(String s) {
         int len = s.length(), sign = 1, result = 0;
-        Stack<Integer> stack = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < len; i++) {
             if (Character.isDigit(s.charAt(i))) {
                 int sum = s.charAt(i) - '0';

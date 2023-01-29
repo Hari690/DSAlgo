@@ -25,7 +25,7 @@ public class SubarraysSumDivisibleByK {
         int total=0;
         for(int i=0;i<nums.length;i++) {
             sum=(sum+nums[i])%k;
-            // think of case [1,-10,5] k=9. We need to make sum positive to continue.
+            // Because -1 % 5 = -1, but we need the positive mod
             if(sum<0)
                 sum+=k;
             if(sumMap.containsKey(sum))

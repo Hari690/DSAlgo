@@ -11,30 +11,29 @@ import java.util.List;
  */
 public class PalindromePartitioning {
     public List<List<String>> partition(String s) {
+        List<List<String>> result = new ArrayList<>();
         List<String> list = new ArrayList<>();
-        List<List<String>> output = new ArrayList<>();
-        check(s,0,list,output);
-        return output;
+        find(s, 0, list, result);
+        return result;
     }
 
-    private void check(String s, int i, List<String> list, List<List<String>> output) {
-        if(i==s.length()) {
-            output.add(new ArrayList<>(list));
+    private void find(String s, int index, List<String> list, List<List<String>> result) {
+        if(index==s.length()) {
+            result.add(new ArrayList<>(list));
             return;
         }
 
-        for(int k=i;k<s.length();k++) {
-            if(checkPalindrome(s,i,k)) {
-                list.add(s.substring(i,k+1));
-                // keep checking until the end.
-                check(s,k+1,list,output);
+        for(int i=index;i<s.length();i++) {
+            if(checkPalindrome(s,index,i)) {
+                list.add(s.substring(index,i+1));
+                find(s, i+1, list, result);
                 list.remove(list.size()-1);
             }
         }
     }
 
     private boolean checkPalindrome(String s, int i, int j) {
-        while(i<j) {
+        while(i<=j) {
             if(s.charAt(i)!=s.charAt(j))
                 return false;
             i++;

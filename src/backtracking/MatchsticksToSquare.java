@@ -28,6 +28,7 @@ public class MatchsticksToSquare {
 
         reverse(nums);
 
+        // no visited set, just permutation of combinations
         return dfs(nums, new int[4], 0, sum / 4);
     }
 

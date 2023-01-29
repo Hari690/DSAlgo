@@ -20,7 +20,7 @@ public class ConfluentCustomSchedulerService {
 
     public ConfluentCustomSchedulerService(int workerThreadSize) {
         this.taskQueue = new PriorityQueue<>(Comparator.comparingLong(ScheduledTask::getScheduledTime));
-        workerExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(workerThreadSize);
+        this.workerExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(workerThreadSize);
     }
 
     public void start(){

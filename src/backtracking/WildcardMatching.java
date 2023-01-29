@@ -49,7 +49,7 @@ public class WildcardMatching {
             dp[i][j] = backtrack(v, pattern, i, j+1, dp) || backtrack(v, pattern, i+1, j, dp) || backtrack(v, pattern, i+1, j+1, dp)?1:-1;
             return dp[i][j]==1;
         }
-        if(pattern.charAt(j)==v.charAt(i)) {
+        if(pattern.charAt(j)==v.charAt(i) || pattern.charAt(j)=='?') {
             dp[i][j] = backtrack(v, pattern, i+1, j+1, dp)?1:-1;
             return dp[i][j]==1;
         }

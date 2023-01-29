@@ -10,6 +10,10 @@ public class FirstNonRepeatingCharacter {
     /*
         Here we return the index of first non-repeating character.å
         If we have to return the character itself the set is not required.
+
+        Use HashMap<String, Integer>
+        String is the word and Integer is the index. 1st time seeing a word, set its index as its real index. 2nd time seeing the same word, set its index as -1.
+        After scanning the file, go through the map, and find the smallest index >= 0
      */
     public int firstUniqChar(String s) {
         Map<Character, Integer> map = new LinkedHashMap<>();

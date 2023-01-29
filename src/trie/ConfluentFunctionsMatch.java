@@ -7,9 +7,55 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * Suppose you are building a library and have following definition of a function and two methods register and findMatches.
+ * Register method registers a function and its argumentTypes in the library and findMatches accepts an input argument list and tries
+ * to find all the functions that match this input argument list.
+ *
+ * class Function {
+ * 	String name;
+ * 	List<String> argumentTypes;
+ * 	boolean isVariadic;
+ *
+ * 	Function(String name, List<String> argumentTypes, boolean isVariadic) {
+ * 		this.name = name;
+ * 		this.argumentTypes = argumentTypes;
+ * 		this.isVariadic = isVariadic;
+ *        }
+ * }
+ *
+ * class FunctionLibrary {
+ * 	public void register(Set<Function> functionSet)  {
+ * 		// implement this method.
+ *    }
+ *
+ * 	public List<Function> findMatches(List<String> argumentTypes) {
+ * 		// implement this method.
+ * 		return null;
+ *    }
+ * }
+ * Note:
+ * If a function is marked as isVariadic=true, then the last argument can occur one or more number of times.
+ *
+ * Example:
+ * FuncA: [String, Integer, Integer]; isVariadic = false
+ * FuncB: [String, Integer]; isVariadic = true
+ * FuncC: [Integer]; isVariadic = true
+ * FuncD: [Integer, Integer]; isVariadic = true
+ * FuncE: [Integer, Integer, Integer]; isVariadic = false
+ * FuncF: [String]; isVariadic = false
+ * FuncG: [Integer]; isVariadic = false
+ *
+ * findMatches({String}) -> [FuncF]
+ * findMatches({Integer}) -> [FuncC, FuncG]
+ * findMatches({Integer, Integer, Integer, Integer}) -> [FuncC, FuncD]
+ * findMatches({Integer, Integer, Integer}) -> [FuncC, FuncD, FuncE]
+ * findMatches({String, Integer, Integer, Integer}) -> [FuncB]
+ * findMatches({String, Integer, Integer}) -> [FuncA, FuncB]
+ *
+ */
+/*
  * First of all design a trie. For each function maintain two lists - one for function ending at this nodes which have isvar
  * equal to True and one for functions ending at this node and isvar is false.
- *
  * Now, when you traverse the new argument list say I, I, I. For any argument which is not the last arg for instance
  * the first two I in this case, check if the current node has any isVarTrue list.
  *     - Now check if all the successor arg[i:] are same as the current Node we are at. If yes, this means our
@@ -55,6 +101,7 @@ class ConfluentFunctionsMatch {
                 return result;
             else {
                 if(i!= argumentTypes.size() && node.map.get(argument).isVarList.size()>0) {
+                    // last argument can occur once or more no of times.
                     if(same(argumentTypes, i, argument))
                         result.addAll(node.isVarList);
                 }

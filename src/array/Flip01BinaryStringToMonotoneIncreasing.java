@@ -21,7 +21,7 @@ package array;
  * Output: 2
  * Explanation: We flip to get 00000000.
  */
-public class FlipStringToMonotoneIncreasing {
+public class Flip01BinaryStringToMonotoneIncreasing {
 
     /*
         We loop through the string.
@@ -50,7 +50,7 @@ public class FlipStringToMonotoneIncreasing {
     }
 
     public static void main(String[] args) {
-        FlipStringToMonotoneIncreasing flipStringToMonotoneIncreasing = new FlipStringToMonotoneIncreasing();
+        Flip01BinaryStringToMonotoneIncreasing flipStringToMonotoneIncreasing = new Flip01BinaryStringToMonotoneIncreasing();
         //flipStringToMonotoneIncreasing.minFlipsMonoIncr("10011111110010111011");
         flipStringToMonotoneIncreasing.minFlipsMonoIncr("10011");
     }

@@ -67,15 +67,15 @@ class LRUCache {
     }
 
     public void set(int key, int value) {
-        Node n = map.get(key);
-        if(null==n){
-            n = new Node(key, value);
-            map.put(key, n);
-            addAtHead(n);
-        }
-        else{
+        if(map.containsKey(key)){
+            Node n = map.get(key);
             n.value = value;
             update(n);
+        }
+        else{
+            Node n = new Node(key, value);
+            map.put(key, n);
+            addAtHead(n);
         }
         if(map.size()>capacity){
             Node toDel = tail.prev;
