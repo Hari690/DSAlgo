@@ -23,6 +23,8 @@ import java.util.List;
  *
  */
 public class FileSystem {
+
+    // another option is to use treemap but complexity would increase
     class File {
         boolean isFile = false;
         HashMap<String, File> files = new HashMap<>();

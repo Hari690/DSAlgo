@@ -23,49 +23,41 @@ public class PermutationInAString {
         if(s1.length()>s2.length())
             return false;
 
-        Map<Character,Integer> map1 = new HashMap<>();
-        Map<Character,Integer> map2 = new HashMap<>();
+        int[] map1 = new int[26];
+        int[] map2 = new int[26];
 
         for(int i=0;i<s1.length();i++) {
-            map1.put(s1.charAt(i), map1.getOrDefault(s1.charAt(i),0)+1);
-            map2.put(s2.charAt(i), map2.getOrDefault(s2.charAt(i),0)+1);
+            map1[s1.charAt(i)-'a']++;
+            map2[s2.charAt(i)-'a']++;
         }
 
         if(compare(map1,map2))
             return true;
 
-        // fixed size sliding window with length l1.
         int left=0;
         for(int i=s1.length();i<s2.length();i++) {
-            Integer val = map2.get(s2.charAt(left));
-            if(val==1)
-                map2.remove(s2.charAt(left));
-            else
-                map2.put(s2.charAt(left), val-1);
-            map2.put(s2.charAt(i), map2.getOrDefault(s2.charAt(i),0)+1);
-            left++;
             if(compare(map1,map2))
                 return true;
+            map2[s2.charAt(i)-'a']++;
+            map2[s2.charAt(left)-'a']--;
+            left++;
         }
+        if(compare(map1,map2))
+            return true;
         return false;
     }
 
-    private boolean compare(Map<Character,Integer> map1, Map<Character,Integer> map2) {
-        if(map1.size()!=map2.size())
-            return false;
-
-        for(Map.Entry<Character,Integer> entry : map1.entrySet()) {
-            if(!entry.getValue().equals(map2.get(entry.getKey()))) {
+    private boolean compare(int[] map1, int[] map2) {
+        for(int i=0;i<map1.length;i++) {
+            if(map1[i]!=map2[i])
                 return false;
-            }
         }
-
         return true;
     }
 
     public static void main(String[] args) {
         PermutationInAString solution = new PermutationInAString();
 
-        solution.checkInclusion("ab","eidbaooo");
+        solution.checkInclusion("adc","dcda");
     }
 }

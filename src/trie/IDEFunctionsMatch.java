@@ -85,7 +85,7 @@ class TrieNode {
     }
 }
 
-class ConfluentFunctionsMatch {
+class IDEFunctionsMatch {
 
     public TrieNode register(Set<Function> functionSet)  {
        return createTrie(functionSet);

@@ -35,13 +35,13 @@ import java.util.Map;
  * We can create "burger" since we have the ingredient "meat" and can create the ingredients "bread" and "sandwich".
  *
  */
-public class FindAllPossibleRecipesGivenSupplies {
+public class FindAllPossibleRecipesGivenSuppliesTopologicalSortUsingMap {
 
     /*
     Given problem is similar to topological sort if we consider
     Every ingredient as a prerequisite to a recipe.
     Supplies as a leaf node.
-     */
+    */
     public List<String> findAllRecipes(String[] recipes, List<List<String>> ingredients, String[] supplies) {
         Map<String,List<String>> adjList = new HashMap<>();
 
@@ -83,7 +83,7 @@ public class FindAllPossibleRecipesGivenSupplies {
     }
 
     public static void main(String[] args) {
-        FindAllPossibleRecipesGivenSupplies findAllPossibleRecipesGivenSupplies = new FindAllPossibleRecipesGivenSupplies();
+        FindAllPossibleRecipesGivenSuppliesTopologicalSortUsingMap findAllPossibleRecipesGivenSupplies = new FindAllPossibleRecipesGivenSuppliesTopologicalSortUsingMap();
 
         String[] recipes = new String[]{"bread"};
         List<String> list = List.of("yeast","flour");

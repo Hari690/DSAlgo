@@ -20,31 +20,20 @@ public class BuyAndSellStocks {
 
     public static void main(String[] args) {
         int[] prices = {7,1,0,5,3,6,4};
-
         new BuyAndSellStocks().maxProfit(prices);
     }
 
-    public int maxProfit(int[] arr) {
-        int n = arr.length;
-        // Initialize Result
-        int maxDiff = 0;
+    public int maxProfit(int[] prices) {
+        int maxProfit = 0;
+        int sell = prices[prices.length-1];
 
-        // Initialize max element from right side
-        int maxRight = arr[n-1];
-
-        for (int i = n-2; i >= 0; i--)
-        {
-            if (arr[i] > maxRight)
-                maxRight = arr[i];
-            else
-            {
-                int diff = maxRight - arr[i];
-                if (diff > maxDiff)
-                {
-                    maxDiff = diff;
-                }
+        for(int i=prices.length-2;i>=0;i--) {
+            if(sell-prices[i]>maxProfit) {
+                maxProfit = sell-prices[i];
             }
+            sell = Math.max(sell, prices[i]);
         }
-        return maxDiff;
+
+        return maxProfit;
     }
 }

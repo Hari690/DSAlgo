@@ -2,23 +2,21 @@ package general;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ConfluentCustomSchedulerService {
+public class CustomSchedulerService {
 
     private final PriorityQueue<ScheduledTask> taskQueue;
     private final Lock lock = new ReentrantLock();
     private final Condition newTaskAdded = lock.newCondition();
     private final ThreadPoolExecutor workerExecutor ;
 
-    public ConfluentCustomSchedulerService(int workerThreadSize) {
+    public CustomSchedulerService(int workerThreadSize) {
         this.taskQueue = new PriorityQueue<>(Comparator.comparingLong(ScheduledTask::getScheduledTime));
         this.workerExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(workerThreadSize);
     }
@@ -124,7 +122,7 @@ public class ConfluentCustomSchedulerService {
     }
 
     public static void main(String[] args) {
-        ConfluentCustomSchedulerService schedulerService = new ConfluentCustomSchedulerService(10);
+        CustomSchedulerService schedulerService = new CustomSchedulerService(10);
         Runnable task1 = getRunnableTask("Task1");
         schedulerService.schedule(task1, 1, TimeUnit.SECONDS);
         Runnable task2 = getRunnableTask("Task2");

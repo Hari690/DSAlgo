@@ -48,9 +48,23 @@ public class JumpGame2 {
         return jumps;
     }
 
+    public int jumpBFS(int[] nums) {
+        int l=0,r=0,max=0,steps=0;
+        // we need to go only until r reaches the last index.
+        while(r<nums.length-1) {
+            for(int i=l;i<=r;i++) {
+                max = Math.max(max,nums[i]+i);
+            }
+            l=r+1;
+            r=max;
+            steps++;
+        }
+        return steps;
+    }
+
     public static void main(String[] args) {
-        int[] arr = {2,3,1,1,4};
+        int[] arr = {2,1,1,1,1};
         JumpGame2 jumpGame = new JumpGame2();
-        jumpGame.jumpO1(arr);
+        jumpGame.jumpBFS(arr);
     }
 }

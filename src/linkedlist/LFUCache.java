@@ -108,8 +108,7 @@ class LFUCache {
             if(v == null){
                 v = new LinkedHashMap<>();
             }
-            // Re-insert the node into the LinkedHashMap to track the least-recently-used order.
-            v.remove(node.key);
+            // Insert the node into the LinkedHashMap to track the least-recently-used order.
             v.put(node.key, node);
             return v;
         });

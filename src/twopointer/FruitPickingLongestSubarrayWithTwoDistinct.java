@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * Longest subarray with 2 elements
  */
-public class FruitPicking {
+public class FruitPickingLongestSubarrayWithTwoDistinct {
     public int totalFruit2(int[] tree) {
         Map<Integer, Integer> count = new HashMap<>();
         int res = 0, i = 0;
