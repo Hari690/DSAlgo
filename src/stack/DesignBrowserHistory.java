@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class DesignBrowserHistory {
     List<String> list;
-    int i=0;
+    int curr =0;
     int fwd=0;
     public DesignBrowserHistory(String homepage) {
         list = new ArrayList<>();
@@ -41,17 +41,17 @@ public class DesignBrowserHistory {
     }
 
     public void visit(String url) {
-        list.add(++i, url);
-        fwd = i;
+        list.add(++curr, url);
+        fwd = curr;
     }
 
     public String back(int steps) {
-        i = Math.max(0,i-steps);
-        return list.get(i);
+        curr = Math.max(0, curr -steps);
+        return list.get(curr);
     }
 
     public String forward(int steps) {
-        i=Math.min(i+steps,fwd);
-        return list.get(i);
+        curr =Math.min(curr +steps,fwd);
+        return list.get(curr);
     }
 }

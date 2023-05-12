@@ -3,8 +3,10 @@ package graphs;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 /**
@@ -22,49 +24,48 @@ import java.util.Set;
  */
 
 /*
-    The idea here is to do a DFS and check for outbound edges since there can only be one path between
+    The idea here is to do a BFS and check for outbound edges since there can only be one path between
     2 cities and then count them.
-    In terms of doing DFS from final destination and checking for all neighbours
+    In terms of doing BFS start from final destination(0) and checking for all neighbours
     it requires an adjacency list containing both source, destination and destination, source
     so we can reach all nodes.
  */
 public class ReorderRoutesSameDestination {
-    int count = 0;
     public int minReorder(int n, int[][] connections) {
-        Map<Integer,List<Integer>> adjList = new HashMap<>();
-        Set<Integer> visited = new HashSet<>();
-        Set<String> edges = new HashSet<>();
-
-        for(int[] conn : connections) {
-            List<Integer> list1 = adjList.get(conn[0]);
-            if(list1==null)
-                list1 = new ArrayList<>();
-            list1.add(conn[1]);
-            adjList.put(conn[0],list1);
-            List<Integer> list2 = adjList.get(conn[1]);
-            if(list2==null)
-                list2 = new ArrayList<>();
-            list2.add(conn[0]);
-            adjList.put(conn[1],list2);
-            edges.add(conn[0]+" "+conn[1]);
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        Set<String> roads = new HashSet<>();
+        for (int[] connection: connections) {
+            int a = connection[0];
+            int b = connection[1];
+            graph.putIfAbsent(a, new ArrayList<>());
+            graph.get(a).add(b);
+            graph.putIfAbsent(b, new ArrayList<>());
+            graph.get(b).add(a);
+            roads.add(a + "," + b);
         }
-
-        visited.add(0);
-        dfs(0, adjList, visited, edges);
-        return count;
-
-    }
-
-    private void dfs(Integer node, Map<Integer,List<Integer>> adjList, Set<Integer> visited, Set<String> edges) {
-        List<Integer> neighbours = adjList.get(node);
-
-        for(Integer neighbour : neighbours) {
-            if(!visited.contains(neighbour)) {
-                if(!edges.contains(neighbour+" "+node))
-                    count++;
-                visited.add(neighbour);
-                dfs(neighbour, adjList, visited, edges);
+        Set<Integer> seen = new HashSet<>();
+        seen.add(0);
+        Queue<Integer> q = new LinkedList<>();
+        q.add(0);
+        int result = 0;
+        while (!q.isEmpty()) {
+            int curr = q.poll();
+            for (int neighbor: graph.get(curr)) {
+                if (!seen.contains(neighbor)) {
+                    if (roads.contains(curr + "," + neighbor)) {
+                        result++;
+                    }
+                    seen.add(neighbor);
+                    q.add(neighbor);
+                }
             }
         }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        ReorderRoutesSameDestination reorderRoutesSameDestination = new ReorderRoutesSameDestination();
+
+        reorderRoutesSameDestination.minReorder(6, new int[][]{{0,1},{1,3},{2,3},{4,0},{4,5}});
     }
 }

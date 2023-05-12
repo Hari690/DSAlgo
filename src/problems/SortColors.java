@@ -53,20 +53,23 @@ public class SortColors {
 //            }
 //        }
 
-        int p1 = 0, p2 = nums.length - 1, index = 0;
-        while (index <= p2) {
-            if (nums[index] == 0) {
-                nums[index] = nums[p1];
+        int p1 = 0, p2 = nums.length - 1, currIndex = 0;
+        while (currIndex <= p2) {
+            if (nums[currIndex] == 0) {
+                //if current is 0, swap with p1 pointer, increment p1
+                nums[currIndex] = nums[p1];
                 nums[p1] = 0;
                 p1++;
             }
-            if (nums[index] == 2) {
-                nums[index] = nums[p2];
+            if (nums[currIndex] == 2) {
+                //if current is 2, swap with p2 pointer, decrement p2
+                nums[currIndex] = nums[p2];
                 nums[p2] = 2;
                 p2--;
-                index--;
+                //may have swapped an extra 0 from the end of array that requires extra processing, so decrement index to account for it
+                currIndex--;
             }
-            index++;
+            currIndex++;
         }
     }
 }

@@ -14,6 +14,12 @@ package recursion;
  * Explanation: From [0,0] to [4,4] we can count 3 ships within the range.
  */
 public class NumberOfShipsInARectangularCartesianPlane {
+
+    /*
+        Apply divide and conquer here. Divide the current searching region into 4 equal smaller regions. Do this recursively with the following base case:
+        1. if the current search region is not valid or it has no ships in it, return 0;
+        2. if the current search region is a single point, return 1.
+     */
     public int countShips(Sea sea, int[] topRight, int[] bottomLeft) {
         return divideAndConquer(sea, topRight, bottomLeft);
     }

@@ -29,22 +29,25 @@ public class CloneGraph {
         }
     }
 
-    public Map<Integer, Node> map = new HashMap<>();
-
     public Node cloneGraph(Node node) {
-        return clone(node);
+        Map<Node, Node> map = new HashMap<>();
+        return dfs(node, map);
     }
 
-    public Node clone(Node node) {
-        if (node == null) return null;
+    private Node dfs(Node node, Map<Node, Node> map) {
+        Node copy = map.get(node);
+        if(copy!=null)
+            return copy;
+        if(node==null)
+            return null;
+        ArrayList<Node> newNeighbours = new ArrayList<>();
 
-        if (map.containsKey(node.val))
-            return map.get(node.val);
-
-        Node newNode = new Node(node.val, new ArrayList<>());
-        map.put(newNode.val, newNode);
-        for (Node neighbor : node.neighbors)
-            newNode.neighbors.add(clone(neighbor));
+        // If we don't add node before doing dfs then we will get into an infinite loop.
+        Node newNode = new Node(node.val, newNeighbours);
+        map.put(node, newNode);
+        for(Node n : node.neighbors) {
+            newNeighbours.add(dfs(n, map));
+        }
         return newNode;
     }
 }

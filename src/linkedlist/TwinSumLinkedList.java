@@ -16,7 +16,7 @@ package linkedlist;
  * There are no other nodes with twins in the linked list.
  * Thus, the maximum twin sum of the linked list is 6.
  */
-public class TwinSum {
+public class TwinSumLinkedList {
     public int pairSum(ListNode head) {
         // midpoint
         ListNode slow = head;

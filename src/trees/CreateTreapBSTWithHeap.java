@@ -30,7 +30,7 @@ import java.util.Queue;
  * 	 /          \
  *  (1, 4)       (10, -1)
  */
-class   Treap {
+class Treap {
     int bstVal;
     int heapVal;
     Treap left;

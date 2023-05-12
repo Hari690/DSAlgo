@@ -1,7 +1,6 @@
 package stack;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,10 +10,11 @@ import java.util.Stack;
  * Given string num representing a non-negative integer num, and an integer k,
  * return the smallest possible integer after removing k digits from num.
  */
-public class MinAfterRemoveKDigits {
-
+public class SmallestMinimumAfterRemoveKDigits {
     /*
-        Intiution is to use a monotonic stack of increasing values and we remove characters if thats'
+        Since for nos it make sense to remove bigger nos from the beginning we are looking for smaller nos first.
+        So we will add a no since we don't know what comes next but if we find a smaller no after it we remove previous one k times so we can minimise.
+        Intuition is to use a monotonic stack of increasing values and we remove characters if thats'
         not the case. Else we can remove from end of stack.
         Finally remove leading zeroes and convert to a string.
      */
@@ -47,9 +47,6 @@ public class MinAfterRemoveKDigits {
 
         while(output.length() > 1 && output.charAt(output.length()-1) == '0')
             output.deleteCharAt(output.length()-1);
-
-        List<Character> list = Arrays.asList('a', 'e', 'i', 'o', 'u');
-        Set<Character> vowels = new HashSet<>(list);
 
         return output.reverse().toString();
     }

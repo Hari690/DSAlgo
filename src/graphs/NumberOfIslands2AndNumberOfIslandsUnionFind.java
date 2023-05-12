@@ -5,29 +5,30 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * A 2d grid map of m rows and n columns is initially filled with water. We may perform an addLand operation which turns the water at position (row, col) into a land. Given a list of positions to operate, count the number of islands after each addLand operation. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+ * A 2d grid map of m rows and n columns is initially filled with water.
+ * We may perform an addLand operation which turns the water at position (row, col) into a land.
+ * Given a list of positions to operate, count the number of islands after each addLand operation.
+ * An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
+ * You may assume all four edges of the grid are all surrounded by water.
  *
  * Example:
- *
  * Input: m = 3, n = 3, positions = [[0,0], [0,1], [1,2], [2,1]]
  *
  * Output: [1,1,2,3]
- *
  * Explanation:
- *
  * Initially, the 2d grid grid is filled with water. (Assume 0 represents water and 1 represents land).
  */
-public class NumberOfIslandsAndNumberOfIslandsUnionFind {
+public class NumberOfIslands2AndNumberOfIslandsUnionFind {
 
     public static void main(String[] args) {
 
         char[][] grid = new char[0][];
 
-        NumberOfIslandsAndNumberOfIslandsUnionFind.numIslands(grid);
+        NumberOfIslands2AndNumberOfIslandsUnionFind.numIslands(grid);
 
         int[][] positions = {{0,0}, {0,1}, {1,2}, {2,1},{0,2}};
 
-        System.out.println(NumberOfIslandsAndNumberOfIslandsUnionFind.numIslands2(3,3, positions));
+        System.out.println(NumberOfIslands2AndNumberOfIslandsUnionFind.numIslands2(3,3, positions));
     }
 
     public static int numIslands(char[][] grid) {

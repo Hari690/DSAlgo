@@ -13,16 +13,29 @@ import java.util.Set;
  * the end.
  *
  * Operations allowed:
- *
  * Fill any of the jugs with water.
  * Empty any of the jugs.
  * Pour water from one jug into another till the other jug is completely full, or the first jug itself is empty.
+ *
+ * Example 1:
+ *
+ * Input: jug1Capacity = 3, jug2Capacity = 5, targetCapacity = 4
+ * Output: true
+ * Explanation: The famous Die Hard example
+ * Example 2:
+ *
+ * Input: jug1Capacity = 2, jug2Capacity = 6, targetCapacity = 5
+ * Output: false
+ * Example 3:
+ *
+ * Input: jug1Capacity = 1, jug2Capacity = 2, targetCapacity = 3
+ * Output: true
  */
 /*
     If we taking the shifting water between jugs out of picture, we are effectively using a single vessel and adding/removing
     jug1/jug2 amount water until we reach our destination with any jug so key is to decompose the problem.
  */
-public class WaterJugProblem {
+public class WaterJugProblemBFS {
     public boolean canMeasureWater(int jug1Capacity, int jug2Capacity, int targetCapacity) {
         Set<Integer> visited = new HashSet<>();
         Queue<Integer> queue = new LinkedList<>();
@@ -54,7 +67,7 @@ public class WaterJugProblem {
     }
 
     public static void main(String[] args) {
-        WaterJugProblem waterJugProblem = new WaterJugProblem();
+        WaterJugProblemBFS waterJugProblem = new WaterJugProblemBFS();
         System.out.println(waterJugProblem.canMeasureWater(3,5,4));
     }
 }

@@ -14,6 +14,8 @@ public class MaxPointsOnLine {
         Looking at constraints, we can do an O(n^3) solution.
         Create a slope with two points and try to put third point on that slope.
         Instead of slope division formula we can use multiplication to avoid decimal points.
+
+        We can use a hashmap to omptimize.
      */
     public int maxPoints(int[][] points) {
         if(points.length==1)

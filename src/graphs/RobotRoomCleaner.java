@@ -74,8 +74,8 @@ public class RobotRoomCleaner {
 }
 
 class Pair<T,R> {
-    T key;
-    R val;
+    public T key;
+    public R val;
     Pair(T key, R val) {
         this.key = key;
         this.val = val;

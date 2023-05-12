@@ -22,19 +22,20 @@ import java.util.Arrays;
 public class NoRescueBoats {
     public int numRescueBoats(int[] people, int limit) {
         Arrays.sort(people);
-        int no=0;
         int left=0,right=people.length-1;
-        while(left<right) {
+        int count=0;
+        while(left<=right) {
             if(people[left]+people[right]<=limit) {
                 left++;
                 right--;
-            } else {
+            } else if(people[right]<=limit) {
                 right--;
+            } else {
+                left++;
             }
-            no++;
+            count++;
         }
-        if(left==right)
-            no++;
-        return no;
+
+        return count;
     }
 }

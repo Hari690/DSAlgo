@@ -1,9 +1,7 @@
 package graphs;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,12 +14,12 @@ import java.util.Set;
  * Return an edge that can be removed so that the resulting graph is a tree of n nodes.
  * If there are multiple answers, return the answer that occurs last in the input.
  */
-public class FindRedundantConnection {
+public class FindRedundantConnectionCheckCycle {
     /*
         Intuition - Unliked directed graph here we need a 2 way adjacency list.
         Then we do DFS also passing the parent.
         Parent needs to be skipped while doing DFS to prevent going back and forming cycle.
-        Then just check if we can reach same node in visited set again and if yes return true.
+        While creating adjacency list just check if we can reach same node in visited set again and if yes return true.
      */
     public int[] findRedundantConnection(int[][] edges) {
         int[] visited = new int[edges.length+1];
@@ -67,7 +65,7 @@ public class FindRedundantConnection {
     }
 
     public static void main(String[] args) {
-        FindRedundantConnection findRedundantConnection = new FindRedundantConnection();
+        FindRedundantConnectionCheckCycle findRedundantConnection = new FindRedundantConnectionCheckCycle();
         int[][] edges = {{1,2},{1,3},{2,3}};
         findRedundantConnection.findRedundantConnection(edges);
     }

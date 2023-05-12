@@ -15,30 +15,27 @@ import java.util.Arrays;
  */
 public class KokoEatingBananas {
     public int minEatingSpeed(int[] piles, int h) {
-        int right = Arrays.stream(piles).max().getAsInt();
-        int left=1;
-        int minHours = right;
-        while(left<=right) {
-            //signifies speed
-            int mid = left + (right - left)/2;
-            int hours = findHours(piles,mid);
-            //decrease speed, more time.
-            if(hours<=h) {
-                right = mid - 1;
-                minHours = Math.min(minHours, mid);
+        long r = Arrays.stream(piles).max().getAsInt();
+        long l = 1;
+        while(l<=r) {
+            long s=l+(r-l)/2;
+            if(canFinish(piles, h, s)) {
+                r=s-1;
+            } else {
+                l=s+1;
             }
-            else
-                left = mid + 1;
-
         }
-        return minHours;
+
+        return (int)l;
     }
 
-    private int findHours(int[] piles, int k) {
-        int days = 0;
-        for(int pile : piles) {
-            days+=pile/k+((pile%k==0)?0:1);
+    private boolean canFinish(int[] piles, long h, long s) {
+        long t = 0;
+        for(int p : piles){
+            t+=(p/s)+(((p%s)!=0)?1:0);
+            if(t>h)
+                return false;
         }
-        return days;
+        return true;
     }
 }

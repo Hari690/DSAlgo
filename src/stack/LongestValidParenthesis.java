@@ -22,9 +22,8 @@ public class LongestValidParenthesis {
                 stack.pop();
                 if(stack.isEmpty())
                     stack.push(i);
-                else {
+                else
                     max = Math.max(max, i-stack.peek());
-                }
             } else {
                 stack.push(i);
             }

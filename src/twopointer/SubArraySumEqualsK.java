@@ -26,7 +26,7 @@ public class SubArraySumEqualsK {
             sum += nums[i];
             if (map.containsKey(sum - k))
                 count += map.get(sum - k);
-            if ( sum ==k)
+            if (sum==k)
                 count++;
             // no of time of occurence
             map.put(sum, map.getOrDefault(sum, 0) + 1);

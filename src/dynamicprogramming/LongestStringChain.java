@@ -29,13 +29,17 @@ import java.util.Map;
  * Explanation: The trivial word chain ["abcd"] is one of the longest word chains.
  * ["abcd","dbqca"] is not a valid word chain because the ordering of the letters is changed.
  */
-public class LongestChainString {
+public class LongestStringChain {
 
     public int longestStrChain(String[] words) {
         int max = 0;
         Arrays.sort(words, Comparator.comparingInt(String::length));
 
         Map<String,Integer> map = new HashMap<>();
+
+        //From shortest word to longest word
+        //Each word is atleast 1 chain long
+        //Form next word removing 1 char each time for each w
         for (String word : words) {
             map.put(word, 1);
             for(int i=0;i<word.length();i++) {
@@ -52,7 +56,7 @@ public class LongestChainString {
 
     public static void main(String[] args) {
         String[] words = {"a","b","ba","bca","bda","bdca"};
-        LongestChainString longestChainString = new LongestChainString();
+        LongestStringChain longestChainString = new LongestStringChain();
         longestChainString.longestStrChain(words);
     }
 }

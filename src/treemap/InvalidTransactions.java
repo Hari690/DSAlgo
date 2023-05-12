@@ -27,15 +27,17 @@ import java.util.TreeMap;
 public class InvalidTransactions {
     public List<String> invalidTransactions(String[] transactions) {
         Map<String, TreeMap<Integer, String>> lastSeen = new HashMap<>();
+        List<String> res = new LinkedList<>();
         for (String transaction : transactions) {
             String[] parts = transaction.split(",");
             String name = parts[0];
             Integer time = Integer.valueOf(parts[1]);
             String city = parts[3];
+            if(lastSeen.containsKey(name) && lastSeen.get(name).containsKey(time))
+                res.add(transaction);
             lastSeen.computeIfAbsent(name, (x) -> new TreeMap<>()).put(time, city);
         }
 
-        List<String> res = new LinkedList<>();
         for (String transaction : transactions) {
             String[] parts = transaction.split(",");
             Integer amount = Integer.valueOf(parts[2]);
@@ -62,7 +64,7 @@ public class InvalidTransactions {
 
     public static void main(String[] args) {
         InvalidTransactions invalidTransactions = new InvalidTransactions();
-        String[] trans = {"bob,689,1910,barcelona","alex,696,122,bangkok","bob,832,1726,barcelona","bob,820,596,bangkok","chalicefy,217,669,barcelona","bob,175,221,amsterdam"};
+        String[] trans = {"alice,20,800,mtv","bob,50,1200,mtv","alice,20,800,mtv","alice,50,1200,mtv","alice,20,800,mtv","alice,50,100,beijing"};
         invalidTransactions.invalidTransactions(trans);
     }
 }

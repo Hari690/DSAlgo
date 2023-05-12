@@ -19,7 +19,7 @@ import java.util.Map;
  * Input: root = [2,1,1]
  * Output: [[1]]
  */
-public class FindDuplicateSubtrees {
+public class FindDuplicateSubtreesUniquePreorderTraversal {
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         List<TreeNode> list = new ArrayList<>();
         Map<String,Integer> map = new HashMap<>();
@@ -30,12 +30,10 @@ public class FindDuplicateSubtrees {
 
     private String check(TreeNode root, Map<String, Integer> map, List<TreeNode> list) {
         if(root==null)
-            return "";
-        String left = check(root.left, map, list);
-        String right = check(root.right, map, list);
-
+            return "N";
         // this is so we don't add the current node to the deup string before diving into the children.
-        String key = root.val + "#" + left + "#" + right;
+        // preorder traversal also considering null
+        String key = root.val + "#" + check(root.left, map, list) + "#" + check(root.right, map, list);
         map.put(key, map.getOrDefault(key, 0)+1);
         if(map.get(key)==2)
             list.add(root);

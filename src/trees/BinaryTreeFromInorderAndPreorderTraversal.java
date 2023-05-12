@@ -2,6 +2,9 @@ package trees;
 
 import problems.TreeNode;
 
+/**
+ * Given two integer arrays inorder and preorder where inorder is the inorder traversal of a binary tree and postorder is the postorder traversal of the same tree, construct and return the binary tree.
+ */
 public class BinaryTreeFromInorderAndPreorderTraversal {
 
     public static void main(String[] args) {

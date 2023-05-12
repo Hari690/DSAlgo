@@ -15,7 +15,7 @@ import java.util.Comparator;
 public class LongestIncreasingSubsequence {
     public int lengthOfLIS(int[] nums) {
         int[] dp = new int[nums.length];
-        int max = 0;
+        int max = 1;
         for(int i=0;i<nums.length;i++) {
             for(int j=i+1;j<nums.length;j++) {
                 if(nums[j]>nums[i]) {
@@ -24,8 +24,7 @@ public class LongestIncreasingSubsequence {
                 }
             }
         }
-
-        return max+1;
+        return max;
     }
 
     public int maxEnvelopesAlt(int[][] envelopes) {

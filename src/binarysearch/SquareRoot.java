@@ -36,6 +36,7 @@ public class SquareRoot {
             if (mid < x/mid)
             {
                 start = mid + 1;
+                // since we are looking for floor of the square root.
                 ans = mid;
             }
             else   // If mid*mid is greater than x

@@ -24,7 +24,9 @@ package dynamicprogramming;
 public class MinStepsMakeStringPalindrome {
 
     /*
+        This is similar to deleting characters to make a string palindrome which is getting lps.
         Boils down to finding the part of string that's not part of longest palindromic subsequence.
+        Whatever is left in original string after finding lps needs to be added from the centre on either side so that's the answer for insertions.
      */
     public int minInsertions(String s) {
         return s.length()-longestPalindromeSubseq(s);

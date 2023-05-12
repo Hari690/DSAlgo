@@ -40,6 +40,7 @@ public class Subsets2WithDuplicates {
     }
 
     //backtrack
+    // sort and skip duplicate elements in bactracking
     public List<List<Integer>> subsetsWithDupBacktrack(int[] nums) {
         Arrays.sort(nums);
         List<Integer> list = new ArrayList<>();

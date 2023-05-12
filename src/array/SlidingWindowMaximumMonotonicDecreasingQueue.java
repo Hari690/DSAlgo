@@ -18,7 +18,7 @@ import java.util.Deque;
     remove from end when the value is lesser than value that's coming in.
     So DLL is always maintained with just the relevant elements of the window.
  */
-public class SlidingWindowMaximumMonotonicQueue {
+public class SlidingWindowMaximumMonotonicDecreasingQueue {
     public int[] maxSlidingWindow(int[] a, int k) {
         if (a == null || k <= 0) {
             return new int[0];

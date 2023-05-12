@@ -21,7 +21,7 @@ package array;
  * Explanation: You can make the string balanced by swapping index 0 with index 3.
  * The resulting string is "[[]]".
  */
-public class MinSwaps {
+public class MinSwapsParenthesisStringBalanced {
     public int minSwaps(String s) {
         int extraClose = 0;
         for(char c : s.toCharArray()) {

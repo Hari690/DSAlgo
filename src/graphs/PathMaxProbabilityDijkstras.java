@@ -13,7 +13,7 @@ import java.util.Set;
  * Given two nodes start and end, find the path with the maximum probability of success to go from start to end and return its success probability.
  * If there is no path from start to end, return 0. Your answer will be accepted if it differs from the correct answer by at most 1e-5.
  */
-public class MaxProbabilityDijkstras {
+public class PathMaxProbabilityDijkstras {
     public double maxProbability(int n, int[][] edges, double[] succProb, int start, int end) {
         Map<Double, List<double[]>> graph = new HashMap();
         int j=0;
@@ -44,7 +44,7 @@ public class MaxProbabilityDijkstras {
     }
 
     public static void main(String[] args) {
-        MaxProbabilityDijkstras maxProbability = new MaxProbabilityDijkstras();
+        PathMaxProbabilityDijkstras maxProbability = new PathMaxProbabilityDijkstras();
 
         System.out.println(maxProbability.maxProbability(3, new int[][]{{0,1},{1,2},{0,2}},new double[]{0.5,0.5,0.2},0,2));
     }
