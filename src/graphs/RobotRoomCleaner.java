@@ -75,10 +75,10 @@ public class RobotRoomCleaner {
 
 class Pair<T,R> {
     public T key;
-    public R val;
+    public R value;
     Pair(T key, R val) {
         this.key = key;
-        this.val = val;
+        this.value = val;
     }
 
     @Override
@@ -86,11 +86,19 @@ class Pair<T,R> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pair<?, ?> pair = (Pair<?, ?>) o;
-        return Objects.equals(key, pair.key) && Objects.equals(val, pair.val);
+        return Objects.equals(key, pair.key) && Objects.equals(value, pair.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(key, val);
+        return Objects.hash(key, value);
+    }
+
+    public T getKey() {
+        return key;
+    }
+
+    public R getValue() {
+        return value;
     }
 }

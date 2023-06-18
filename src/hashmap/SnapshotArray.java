@@ -48,7 +48,7 @@ public class SnapshotArray {
 
     // Do the search using a TreeMap like data structure to make it more efficient.
 //    List<TreeMap<Integer, Integer>> arr;
-//    int currId = 0;
+//    int snapId = 0;
 //
 //    public SnapshotArray(int length) {
 //        arr = new ArrayList();
@@ -60,11 +60,11 @@ public class SnapshotArray {
 //    }
 //
 //    public void set(int index, int val) {
-//        arr.get(index).put(currId, val);
+//        arr.get(index).put(snapId, val);
 //    }
 //
 //    public int snap() {
-//        return currId++;
+//        return snapId++;
 //    }
 //
 //    public int get(int index, int snap_id) {

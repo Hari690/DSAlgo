@@ -16,12 +16,11 @@ public class NumberOfProvinces {
         boolean[] visited = new boolean[isConnected.length];
         int total = 0;
 
-        for(int[] vals : isConnected) {
-            for(int j=0;j<vals.length;j++) {
-                if(!visited[j])
-                    total+=dfs(isConnected, visited, j);
-            }
+        for(int j=0;j<isConnected.length;j++) {
+            if(!visited[j])
+                total+=dfs(isConnected, visited, j);
         }
+
         return total;
     }
 

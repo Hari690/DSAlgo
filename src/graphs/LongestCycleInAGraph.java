@@ -1,10 +1,7 @@
 package graphs;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * You are given a directed graph of n nodes numbered from 0 to n - 1, where each node has at most one outgoing edge.
@@ -50,7 +47,7 @@ public class LongestCycleInAGraph {
     private void findCycle(int n, Map<Integer, Integer> adjList, Map<Integer,Pair<Integer,Integer>> visited, int d, int id) {
         if (visited.containsKey(n)) {
             if(visited.get(n).key==id)
-                maxDistance = Math.max(d-visited.get(n).val, maxDistance);
+                maxDistance = Math.max(d-visited.get(n).value, maxDistance);
             return;
         }
         visited.put(n, new Pair<>(id,d));

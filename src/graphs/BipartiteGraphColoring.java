@@ -22,6 +22,7 @@ package graphs;
  */
 public class BipartiteGraphColoring {
     /*
+        Can we partition nodes into two independent sets denoted by 1 & -1 ?
         Idea is to always start coloring an uncolored node with one color and then use dfs to color
         adjacent nodes in different color. If it's already colored in different color
         previously return false.

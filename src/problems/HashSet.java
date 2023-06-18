@@ -12,7 +12,6 @@ import java.util.List;
  * void remove(key) Removes the value key in the HashSet. If key does not exist in the HashSet, do nothing.
  */
 class DesignHashSet {
-
     /*
         Use an array of LinkedList.
      */

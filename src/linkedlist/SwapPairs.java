@@ -22,18 +22,16 @@ public class SwapPairs {
     }
 
     public ListNode swapPairs(ListNode head) {
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode current = dummy;
-        while (current.next != null && current.next.next != null) {
-            ListNode first = current.next;
-            ListNode second = current.next.next;
-            first.next = second.next;
-            current.next = second;
-            current.next.next = first;
-            // move 2 steps
-            current = current.next.next;
+        ListNode temp = head;
+
+        while(temp!=null && temp.next!=null) {
+            ListNode next = temp.next.next;
+            int val = temp.val;
+            temp.val = temp.next.val;
+            temp.next.val=val;
+            temp = next;
         }
-        return dummy.next;
+
+        return head;
     }
 }

@@ -25,11 +25,7 @@ public class TimeNeededToInformAllEmployees {
         int managerTime = 0;
         for(int i=0;i<manager.length;i++) {
             if(manager[i]!=-1) {
-                List<Integer> list = map.get(manager[i]);
-                if(list==null)
-                    list = new ArrayList<>();
-                list.add(i);
-                map.put(manager[i], list);
+                map.computeIfAbsent(manager[i], k-> new ArrayList<>()).add(i);
             } else {
                 managerTime+=informTime[i];
             }

@@ -31,7 +31,7 @@ public class MinScoreGraphBetweenTwoCities {
            return;
         visited.add(n);
         for (Pair<Integer,Integer> next : adjList.get(n)) {
-            min = Math.min(min, next.val);
+            min = Math.min(min, next.value);
             dfs(next.key, adjList, visited);
         }
     }

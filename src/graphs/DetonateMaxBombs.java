@@ -1,5 +1,12 @@
 package graphs;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * You are given a list of bombs. The range of a bomb is defined as the area where its effect can be felt.
  * This area is in the shape of a circle with the center as the location of the bomb.
@@ -22,32 +29,48 @@ package graphs;
  * Detonating either bomb will not detonate the other bomb, so the maximum number of bombs that can be detonated is 1.
  */
 public class DetonateMaxBombs {
-    int count = 0; // global variable, otherwise use an array
     public int maximumDetonation(int[][] bombs) {
+        Map<Integer, Set<Integer>> adjList = new HashMap<>();
         int n = bombs.length;
+        for(int i=0;i<n;i++) {
+            for(int j=i+1;j<n;j++) {
+                long distance = distance(bombs[i], bombs[j]);
+                if(distance<=(long)bombs[i][2]*bombs[i][2]) {
+                    adjList.computeIfAbsent(i, k-> new HashSet<>()).add(j);
+                }
+                if(distance<=(long)bombs[j][2]*bombs[j][2]) {
+                    adjList.computeIfAbsent(j, k-> new HashSet<>()).add(i);
+                }
+            }
+        }
+
         int ans = 0;
         for (int i = 0; i < n; i++) {
-            count = 0; // Start a new search, reset count
-            dfs(i, new boolean[n], bombs);
-            ans = Math.max(ans, count);
+            Set<Integer> visited = new HashSet<>();
+            dfs(n, i, visited , bombs, adjList);
+            ans = Math.max(ans, visited.size());
         }
         return ans;
     }
 
-    private void dfs(int idx, boolean[] v, int[][] bombs) {
-        count++;
-        v[idx] = true;
-        int n = bombs.length;
+    private void dfs(int n, int idx, Set<Integer> visited, int[][] bombs, Map<Integer, Set<Integer>> adjList) {
+        visited.add(idx);
         for (int i = 0; i < n; i++) {
-            if (!v[i] && inRange(bombs[idx], bombs[i])) {
-                v[i] = true;
-                dfs(i, v, bombs);
+            if (!visited.contains(i) && adjList.containsKey(idx) && adjList.get(idx).contains(i)) {
+                visited.add(i);
+                dfs(n, i, visited, bombs, adjList);
             }
         }
     }
 
-    private boolean inRange(int[] a, int[] b) {
+    private long distance(int[] a, int[] b) {
         long dx = a[0] - b[0], dy = a[1] - b[1], r = a[2];
-        return dx * dx + dy * dy <= r * r;
+        return dx * dx + dy * dy;
+    }
+
+    public static void main(String[] args) {
+        DetonateMaxBombs detonateMaxBombs = new DetonateMaxBombs();
+        int[][] bombs = {{2,1,3},{6,1,4}};
+        detonateMaxBombs.maximumDetonation(bombs);
     }
 }

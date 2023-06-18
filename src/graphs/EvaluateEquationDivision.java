@@ -45,20 +45,12 @@ public class EvaluateEquationDivision {
     public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
 
         Map<String, List<Pair>> adjList = new HashMap<>();
-        for(List<String> equation : equations) {
-            adjList.put(equation.get(0), new ArrayList<>());
-            adjList.put(equation.get(1), new ArrayList<>());
-        }
-
-
         for(int i=0;i<equations.size();i++) {
-            List<Pair> pairs = adjList.get(equations.get(i).get(0));
-            pairs.add(new Pair(equations.get(i).get(1), values[i]));
-            pairs = adjList.get(equations.get(i).get(1));
-            pairs.add(new Pair(equations.get(i).get(0), 1/values[i]));
+            adjList.computeIfAbsent(equations.get(i).get(0), (k) -> new ArrayList<>()).add(new Pair(equations.get(i).get(1), values[i]));
+
+            adjList.computeIfAbsent(equations.get(i).get(1), (k) -> new ArrayList<>()).add(new Pair(equations.get(i).get(0), 1/values[i]));
         }
 
-        //System.out.println(adjList);
         Set<String> visited = new HashSet<>();
         double[] results = new double[queries.size()];
         int i=0;
