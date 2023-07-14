@@ -24,7 +24,7 @@ import java.util.PriorityQueue;
  * Output: [[1,3],[2,3]]
  * Explanation: All possible pairs are returned from the sequence: [1,3],[2,3]
  */
-public class KPairsWithSmallestSums {
+public class FindKPairsWithSmallestSums {
     /*
         Think of merge sort and we sort based on sum of values of a pair.
         So add first row or first column of all elements to a PQ.
@@ -61,7 +61,7 @@ public class KPairsWithSmallestSums {
     }
 
     public static void main(String[] args) {
-        KPairsWithSmallestSums solution = new KPairsWithSmallestSums();
+        FindKPairsWithSmallestSums solution = new FindKPairsWithSmallestSums();
         int[] nums1 = {1,7,11};
         int[] nums2 = {2,4,6};
         solution.kSmallestPairs(nums1,nums2,3);
