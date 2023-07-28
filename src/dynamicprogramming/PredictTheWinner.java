@@ -29,7 +29,7 @@ Constraints:
 1 <= nums.length <= 20
 0 <= nums[i] <= 107
  */
-class PredictTheWinner {
+class PredictTheWinnerPickNumberFromEndArray {
 
   // function is for adding score of first player only hence we don't add any score for second player and minimise for second player.
   public boolean PredictTheWinner(int[] nums) {
