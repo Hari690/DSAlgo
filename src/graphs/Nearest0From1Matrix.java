@@ -14,6 +14,8 @@ import java.util.Set;
  *
  * Input: mat = [[0,0,0],[0,1,0],[1,1,1]]
  * Output: [[0,0,0],[0,1,0],[1,2,1]]
+ *
+ * Start with 0s and find all nearest ones.
  */
 public class Nearest0From1Matrix {
     static class Coordinate {
